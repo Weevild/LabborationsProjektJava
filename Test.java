@@ -5,7 +5,6 @@ public class Test {
         direction = (direction + 1) % 4;
         System.out.println(directions[direction]);
     }
-
 }
 class Main {
     public static void main(String[] args) {

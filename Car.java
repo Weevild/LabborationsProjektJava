@@ -67,4 +67,19 @@ public class Car implements Movable {
         public void turnRight() {
             direction = (direction - 1) % 4;
         }
+         public void incrementSpeed(double amount){
+        }
+        public void decrementSpeed(double amount){
+        }
+        public void gas(double amount){
+            if (amount > 1 && amount < 0){
+                incrementSpeed(amount);
+            }
+        }
+        public void brake(double amount){
+            if (amount > 1 && amount < 0){
+                decrementSpeed(amount);
+            }
+        }
 }
+// this is a comment
