@@ -1,3 +1,5 @@
+
+
 import java.awt.*;
 
 public class Car implements Movable {
@@ -64,7 +66,7 @@ public class Car implements Movable {
         }
         @Override
         public void turnRight() {
-            direction = (direction - 1) % 4;
+            direction = (direction + 3 ) % 4;
         }
          public void incrementSpeed(double amount){
         }

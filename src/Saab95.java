@@ -12,10 +12,10 @@ public class Saab95 extends Car {
         modelName = "Saab95";
         stopEngine();
     }
-    private void setTurboOn(){
+    public void setTurboOn(){
         turboOn = true;
     }
-    private void setTurboOff(){
+    public void setTurboOff(){
         turboOn = false;
     }
     public double speedFactor(){
