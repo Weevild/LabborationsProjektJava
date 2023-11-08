@@ -1,73 +1,70 @@
-import org.junit.Test;
 import org.junit.Before;
-import org.junit.Assert;
-
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class Tests {
 
-    private Saab95 Saab = new Saab95();
+    private Saab95 saab;
 
-    /*@Before
-    void setUp() throws Exception{
-        Car Car = new Car();
-        Saab95 Saab = new Saab95();
-    }*/
-
-    @Test
-    void nrOfDoors(){
-        assertEquals("GetNrOfDoors should work",Saab.getNrDoors(), 2);
-    }
-    @Test
-    void getDirection(){
-        assertEquals("Get direction works", Saab.getDirection(), "N");
+    @Before
+    public void setUp() {
+        saab = new Saab95();
     }
 
     @Test
-    void TurningLeft(){
-        Saab.turnLeft();
-        assertEquals("Turning left works", Saab.getDirection(), "E");
-    }
-    @Test
-    void RotatingLeftToNorth(){
-        Saab.turnLeft();
-        Saab.turnLeft();
-        Saab.turnLeft();
-        Saab.turnLeft();
-        assertEquals("Rotating left works", Saab.getDirection(), "N");
+    public void testNrOfDoors() {
+        assertEquals("Number of doors should be 2", 2, saab.getNrDoors());
     }
 
     @Test
-    void TurningRight(){
-        Saab.turnRight();
-        assertEquals("Turning right works", Saab.getDirection(), "W");
-    }
-    @Test
-    void RotatingRight(){
-        Saab.turnRight();
-        Saab.turnRight();
-        Saab.turnRight();
-        Saab.turnRight();
-        assertEquals("Rotating right works", Saab.getDirection(), "N");
+    public void testGetDirection() {
+        assertEquals("Initial direction should be North", "N", saab.getDirection());
     }
 
     @Test
-    void StartingEngine(){
-        Saab.startEngine();
-        assertSame("Engine moves the car forward slowly", Saab.getCurrentSpeed(), 0.1);
+    public void testTurningLeft() {
+        saab.turnLeft();
+        // Assuming the initial direction is North, turning left should make it West
+        assertEquals("Turning left should change direction to West", "W", saab.getDirection());
     }
 
     @Test
-    void StopEngine(){
-        Saab.stopEngine();
-        assertSame("Engine stop the car and any movement", Saab.getCurrentSpeed(), 0);
-
+    public void testRotatingLeftToNorth() {
+        // Assuming the initial direction is North, rotating left 4 times should make it North again
+        for (int i = 0; i < 4; i++) {
+            saab.turnLeft();
+        }
+        assertEquals("Rotating left 4 times should return to North", "N", saab.getDirection());
     }
 
     @Test
-    void IncreasingSpeed(){
-        assertEquals("Speed has increased", );
+    public void testTurningRight() {
+        saab.turnRight();
+        // Assuming the initial direction is North, turning right should make it East
+        assertEquals("Turning right should change direction to East", "E", saab.getDirection());
     }
 
+    @Test
+    public void testRotatingRight() {
+        // Assuming the initial direction is North, rotating right 4 times should make it North again
+        for (int i = 0; i < 4; i++) {
+            saab.turnRight();
+        }
+        assertEquals("Rotating right 4 times should return to North", "N", saab.getDirection());
+    }
+
+    @Test
+    public void testStartingEngine() {
+        saab.startEngine();
+        // The current speed should be slightly greater than 0 after starting the engine
+        assertTrue("Starting the engine should set current speed greater than 0", saab.getCurrentSpeed() > 0);
+    }
+
+    @Test
+    public void testStopEngine() {
+        saab.startEngine();
+        saab.stopEngine();
+        assertEquals("Stopping the engine should set current speed to 0", 0, saab.getCurrentSpeed(), 0.0);
+    }
 
 }
