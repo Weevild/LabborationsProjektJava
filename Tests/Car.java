@@ -10,34 +10,33 @@ public class Car implements Movable {
         public int direction; // The direction that the car is facing
         public double xCoordinate; // The x coordinate of the car
         public double yCoordinate; // The Y coordinate of the car
-        private int getNrDoors(){
+        public int getNrDoors(){
             return nrDoors;
         }
-        private double getEnginePower(){
+        public double getEnginePower(){
             return enginePower;
         }
         public double getCurrentSpeed(){
             return currentSpeed;
         }
-        private Color getColor(){
+        public Color getColor(){
             return color;
         }
-        private String getDirection() {
+        public String getDirection() {
             return directions[direction];
         }
-        private double getxCoordinate(){
+        public double getxCoordinate(){
             return xCoordinate;
         }
-        private double getyCoordinate(){
+        public double getyCoordinate(){
             return yCoordinate;
         }
-        private void setColor(Color clr){
+        public void setColor(Color clr){
             color = clr;
         }
         public void startEngine(){
             currentSpeed = 0.1;
         }
-
         public void stopEngine(){
             currentSpeed = 0;
         }
@@ -82,4 +81,3 @@ public class Car implements Movable {
             }
         }
 }
-// this is a comment
