@@ -1,12 +1,11 @@
 
-
 import java.awt.*;
 
 public class Car implements Movable {
         private final String[] directions = {"N", "E", "S", "W"};
         public int nrDoors; // Number of doors on the car
         public double enginePower; // Engine power of the car
-        public double currentSpeed; // The current speed of the car
+        private double currentSpeed; // The current speed of the car must be public
         public Color color; // Color of the car
         public String modelName; // The car model name
         public int direction; // The direction that the car is facing
@@ -48,16 +47,16 @@ public class Car implements Movable {
             double speed = getCurrentSpeed();
             String currentDirection = getDirection();
             if (currentDirection.equals("N")){
-                xCoordinate = getxCoordinate() + speed;
-            }
-            else if (currentDirection.equals("S")){
-                xCoordinate = getxCoordinate() - speed;
-            }
-            else if (currentDirection.equals("E")){
                 yCoordinate = getyCoordinate() + speed;
             }
-            else if (currentDirection.equals("W")){
+            else if (currentDirection.equals("S")){
                 yCoordinate = getyCoordinate() - speed;
+            }
+            else if (currentDirection.equals("E")){
+                xCoordinate = getxCoordinate() + speed;
+            }
+            else if (currentDirection.equals("W")){
+                xCoordinate = getxCoordinate() - speed;
             }
         }
         @Override
@@ -68,10 +67,21 @@ public class Car implements Movable {
         public void turnRight() {
             direction = (direction + 3 ) % 4;
         }
-         public void incrementSpeed(double amount){
+        public abstract double speedFactor();
+
+        public void incrementSpeed(double amount){
+            double newSpeed  = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+            if (newSpeed <= enginePower && newSpeed > getCurrentSpeed()) {
+                currentSpeed = newSpeed;
+            }
         }
         public void decrementSpeed(double amount){
+            double newSpeed  = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+            if (newSpeed <= getCurrentSpeed()) {
+                currentSpeed = newSpeed;
+            }
         }
+
         public void gas(double amount){
             if (amount > 0 && amount < 1){
                 incrementSpeed(amount);
