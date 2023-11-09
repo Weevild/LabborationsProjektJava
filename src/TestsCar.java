@@ -96,7 +96,7 @@ public class TestsCar {
         assertEquals("Gas works with turbo", Saab.getCurrentSpeed(), 0.9125, 5);
     }
     @Test
-    public void GasWithTurbOffSaab(){
+    public void GasWithTurboOffSaab(){
         Saab.startEngine();
         Saab.gas(0.5);
         assertEquals("Gas works without turbo", Saab.getCurrentSpeed(), 0.725, 5);
