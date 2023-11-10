@@ -1,6 +1,7 @@
+import java.util.List;
+
 public interface StorageThings {
     void storeVehicle();
     void removeVehicle();
-    void getStorage();
-
+    List getStorage();
 }
