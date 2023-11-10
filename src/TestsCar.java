@@ -180,6 +180,11 @@ public class TestsCar {
         assertEquals("Braking works", Volvo.getCurrentSpeed(), 0, 5);
     }
 
+    @Test
+    public void ScaniaTruckbedPosition(){
+
+    }
+
 
 }
 
