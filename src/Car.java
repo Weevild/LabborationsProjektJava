@@ -1,4 +1,4 @@
-
+package src;
 import java.awt.*;
 
 public abstract class Car implements Movable {
@@ -11,6 +11,7 @@ public abstract class Car implements Movable {
         public int direction; // The direction that the car is facing
         public double xCoordinate; // The x coordinate of the car
         public double yCoordinate; // The Y coordinate of the car
+        public int TruckBedAngle; // The angle of the truckbed
         public int getNrDoors(){
             return nrDoors;
         }
@@ -79,6 +80,22 @@ public abstract class Car implements Movable {
             double newSpeed  = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
             if (newSpeed <= getCurrentSpeed()) {
                 currentSpeed = newSpeed;
+            }
+        }
+
+        public boolean AllowTruckbedMovement(double amount){
+            double speed = getCurrentSpeed();
+            if(speed == 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        public void TruckBedLower(int amount) {
+            if (AllowTruckbedMovement(amount)) {
+                TruckBedAngle = amount;
             }
         }
 

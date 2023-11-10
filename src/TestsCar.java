@@ -1,3 +1,4 @@
+package src;
 import org.junit.Test;
 import org.junit.Assert;
 import java.awt.Color;
