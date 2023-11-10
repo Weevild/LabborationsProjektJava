@@ -1,6 +1,4 @@
-
 import java.awt.*;
-
 public abstract class Car implements Movable {
         private final String[] directions = {"N", "E", "S", "W"};
         public int nrDoors; // Number of doors on the car
@@ -67,11 +65,12 @@ public abstract class Car implements Movable {
         public void turnRight() {
             direction = (direction + 3 ) % 4;
         }
-        public abstract double speedFactor();
-
+        public double speedFactor(){
+            return enginePower * 0.01;
+        }
         public void incrementSpeed(double amount){
             double newSpeed  = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
-            if (newSpeed <= enginePower && newSpeed > getCurrentSpeed()) {
+            if (newSpeed > getCurrentSpeed()) {
                 currentSpeed = newSpeed;
             }
         }

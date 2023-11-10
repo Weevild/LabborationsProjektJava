@@ -1,17 +1,17 @@
 import java.awt.*;
 
-public class Scania extends Car implements Trucks{
-
-    private int platformAngle;
+public class Scania extends Vehicles_with_platform {
 
     public Scania(){
         direction = 0;
-        nrDoors = 4;
-        color = Color.black;
-        enginePower = 100;
-        modelName = "Volvo240";
+        nrDoors = 2;
+        color = Color.white;
+        enginePower = 300;
+        modelName = "Scania";
         xCoordinate = 0;
         yCoordinate = 0;
+        maxAngle = 70;
+        minAngle = 0;
         stopEngine();
     }
 
@@ -20,8 +20,9 @@ public class Scania extends Car implements Trucks{
         return 0;
     }
     @Override
-    public void platformUp(){
-
+    public boolean canMove(){
+        return getPlatformPosition() == minAngle;
     }
+
 
 }
