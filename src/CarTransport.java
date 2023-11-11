@@ -19,10 +19,6 @@ public class CarTransport extends Vehicles_with_platform implements StorageThing
     Car testSaab = new Saab95();
     List<Car> storage = new ArrayList<>();
 
-    @Override
-    public double speedFactor(){
-        return 0;
-    }
 
     @Override
     public void storeVehicle(){
@@ -38,7 +34,7 @@ public class CarTransport extends Vehicles_with_platform implements StorageThing
         return storage;
     }
     @Override
-    public boolean canMove(){
+    public boolean canMoveCheck(){
         return getPlatformPosition() == maxAngle;
     }
 }

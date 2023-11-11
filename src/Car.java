@@ -41,7 +41,8 @@ public abstract class Car implements Movable {
         }
 
         @Override
-        public void move() { // använd enum för directions
+        public void move() {
+
             double speed = getCurrentSpeed();
             String currentDirection = getDirection();
             if (currentDirection.equals("N")){

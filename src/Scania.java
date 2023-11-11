@@ -16,11 +16,7 @@ public class Scania extends Vehicles_with_platform {
     }
 
     @Override
-    public double speedFactor(){
-        return 0;
-    }
-    @Override
-    public boolean canMove(){
+    public boolean canMoveCheck(){
         return getPlatformPosition() == minAngle;
     }
 
