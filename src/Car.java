@@ -1,6 +1,4 @@
-package src;
 import java.awt.*;
-
 public abstract class Car implements Movable {
         private final String[] directions = {"N", "E", "S", "W"};
         public int nrDoors; // Number of doors on the car
@@ -11,7 +9,6 @@ public abstract class Car implements Movable {
         public int direction; // The direction that the car is facing
         public double xCoordinate; // The x coordinate of the car
         public double yCoordinate; // The Y coordinate of the car
-        public int TruckBedAngle; // The angle of the truckbed
         public int getNrDoors(){
             return nrDoors;
         }
@@ -44,7 +41,8 @@ public abstract class Car implements Movable {
         }
 
         @Override
-        public void move() { // använd enum för directions
+        public void move() {
+
             double speed = getCurrentSpeed();
             String currentDirection = getDirection();
             if (currentDirection.equals("N")){
@@ -68,11 +66,12 @@ public abstract class Car implements Movable {
         public void turnRight() {
             direction = (direction + 3 ) % 4;
         }
-        public abstract double speedFactor();
-
+        public double speedFactor(){
+            return enginePower * 0.01;
+        }
         public void incrementSpeed(double amount){
             double newSpeed  = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
-            if (newSpeed <= enginePower && newSpeed > getCurrentSpeed()) {
+            if (newSpeed > getCurrentSpeed()) {
                 currentSpeed = newSpeed;
             }
         }
@@ -80,22 +79,6 @@ public abstract class Car implements Movable {
             double newSpeed  = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
             if (newSpeed <= getCurrentSpeed()) {
                 currentSpeed = newSpeed;
-            }
-        }
-
-        public boolean AllowTruckbedMovement(double amount){
-            double speed = getCurrentSpeed();
-            if(speed == 0){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-
-        public void TruckBedLower(int amount) {
-            if (AllowTruckbedMovement(amount)) {
-                TruckBedAngle = amount;
             }
         }
 

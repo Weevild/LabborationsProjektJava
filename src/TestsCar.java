@@ -1,4 +1,3 @@
-package src;
 import org.junit.Test;
 import org.junit.Assert;
 import java.awt.Color;
@@ -8,23 +7,23 @@ public class TestsCar {
 
     public Saab95 Saab = new Saab95();
     public Volvo240 Volvo = new Volvo240();
+    public Scania Scania = new Scania();
+
+    public CarTransport CarTransport = new CarTransport();
 
     @Test
     public void nrOfDoors() {
         Assert.assertEquals("GetNrOfDoors should work", Saab.getNrDoors(), 2);
     }
-
     @Test
     public void getDirection() {
         Assert.assertEquals("Get direction works", Saab.getDirection(), "N");
     }
-
     @Test
     public void TurningLeft() {
         Saab.turnLeft();
         Assert.assertEquals("Turning left works", Saab.getDirection(), "E");
     }
-
     @Test
     public void RotatingLeftToNorth() {
         Saab.turnLeft();
@@ -33,13 +32,11 @@ public class TestsCar {
         Saab.turnLeft();
         Assert.assertEquals("Rotating left works", Saab.getDirection(), "N");
     }
-
     @Test
     public void TurningRight() {
         Saab.turnRight();
         Assert.assertEquals("Turning right works", Saab.getDirection(), "W");
     }
-
     @Test
     public void RotatingRight() {
         Saab.turnRight();
@@ -48,47 +45,38 @@ public class TestsCar {
         Saab.turnRight();
         Assert.assertEquals("Rotating right works", Saab.getDirection(), "N");
     }
-
     @Test
     public void StartingEngine() {
         Saab.startEngine();
         assertEquals("Engine moves the car forward slowly", Saab.getCurrentSpeed(), 0.1, 3);
     }
-
     @Test
     public void StopEngine() {
         Saab.stopEngine();
         assertEquals("Engine stop the car and any movement", Saab.getCurrentSpeed(), 0.0, 3);
 
     }
-
     @Test
     public void getXCoordinate() {
         assertEquals("Getxcoordinat works", Saab.getxCoordinate(), 0, 3);
     }
-
     @Test
     public void getYCoordinate() {
         assertEquals("Getycoordinate works", Saab.getyCoordinate(), 0, 3);
     }
-
-
     @Test
     public void getColour() {
         assertEquals("Get colour works", Saab.getColor(), Color.red);
     }
-
     @Test
     public void ChangeColour() {
         Saab.setColor(Color.blue);
         assertEquals("You can change colour", Saab.getColor(), Color.blue);
     }
-
     @Test
     public void getEnginePower() {
         assertEquals("GetEnginePower works", Saab.getEnginePower(), 125, 3);
     }
-
     @Test
     public void GasWithTurboSaab() {
         Saab.startEngine();
@@ -155,7 +143,6 @@ public class TestsCar {
         Saab.stopEngine();
         assertEquals("Turning off the engine works", Saab.getCurrentSpeed(), 0, 5);
     }
-
     @Test
     public void TurningOffTheTurboSaab(){
         Saab.setTurboOn();
@@ -163,15 +150,12 @@ public class TestsCar {
         Saab.gas(0.5);
         assertEquals("Turning off the turbo works", Saab.getCurrentSpeed(), 0.725, 5);
     }
-
-
     @Test
     public void GasVolvo() {
         Volvo.startEngine();
         Volvo.gas(0.5);
         assertEquals("Gas works without turbo", Volvo.getCurrentSpeed(), 0.725, 5);
     }
-
     @Test
     public void BrakingVolvo(){
         Volvo.startEngine();
@@ -179,12 +163,49 @@ public class TestsCar {
         Volvo.brake(0.5);
         assertEquals("Braking works", Volvo.getCurrentSpeed(), 0, 5);
     }
-
     @Test
-    public void ScaniaTruckbedPosition(){
-
+    public void IntitialPlatformAngle(){
+        assertEquals("Inital platform angle is correct", 0, Scania.getPlatformPosition());
     }
-
+    @Test
+    public void MovingThePlatformUp(){
+        Scania.platformUp(35);
+        assertEquals("Moving the platform upwards works", 35, Scania.getPlatformPosition());
+    }
+    @Test
+    public void TryingToRaiseThePlatformTooHigh(){
+        Scania.platformUp(500);
+        assertEquals("The restrictions for moving the platform upwards works",70, Scania.getPlatformPosition());
+    }
+    @Test
+    public void MovingThePlatfromDown(){
+        Scania.platformUp(35);
+        Scania.platformDown(25);
+        assertEquals("Moving the platform downwards works",10, Scania.getPlatformPosition());
+    }
+    @Test
+    public void TryingTooLowerThePlatformTooLow(){
+        Scania.platformUp(50);
+        Scania.platformDown(500);
+        assertEquals("The restriction for moving the platform downwards works",0,  Scania.getPlatformPosition());
+    }
+    @Test
+    public void TryingTooLowerThePlatformIncorrectly(){
+        Scania.platformUp(50);
+        Scania.platformDown(-10);
+        assertEquals("One cannot lower the platform incorrectly",50 , Scania.getPlatformPosition());
+    }
+    @Test
+    public void TryingToMoveTheTruckWithPlatformInTheWrongPosition(){
+        Scania.platformUp(50);
+        Scania.move();
+        assertEquals("One cannot move the Scania when the platform is in the wrong position", 0, Scania.getyCoordinate());
+    }
+    @Test
+    public void TryingToMoveWithPlatformInTheRightPosition(){
+        Scania.move();
+        assertEquals("One can move the platform when in the right position", 0, 0);
+    }
 
 }
 

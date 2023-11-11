@@ -1,24 +1,24 @@
-package src;
-
 import java.awt.*;
 
-public class Scania extends Car {
+public class Scania extends Vehicles_with_platform {
+
     public Scania(){
         direction = 0;
         nrDoors = 2;
-        color = Color.blue;
-        enginePower = 200;
+        color = Color.white;
+        enginePower = 300;
         modelName = "Scania";
         xCoordinate = 0;
         yCoordinate = 0;
-        TruckBedAngle = 0;
+        maxAngle = 70;
+        minAngle = 0;
         stopEngine();
     }
 
     @Override
-    public double speedFactor() {
-        // Oklar användning
-        return 0.0;
+    public boolean canMoveCheck(){
+        return getPlatformPosition() == minAngle;
     }
+
 
 }
