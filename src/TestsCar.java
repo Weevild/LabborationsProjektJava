@@ -1,3 +1,5 @@
+package src;
+
 import org.junit.Test;
 import org.junit.Assert;
 import java.awt.Color;
@@ -8,8 +10,10 @@ public class TestsCar {
     public Saab95 Saab = new Saab95();
     public Volvo240 Volvo = new Volvo240();
     public Scania Scania = new Scania();
-
+    public Workshop Workshop = new Workshop();
+    WorkshopSaab WorkshopSaab = new WorkshopSaab();
     public CarTransport CarTransport = new CarTransport();
+
 
     @Test
     public void nrOfDoors() {
@@ -206,6 +210,23 @@ public class TestsCar {
         Scania.move();
         assertEquals("One can move the platform when in the right position", 0, 0);
     }
+    /*
+    @Test
+    public void TryToStoreWrongModelInWorkshop(){
+        WorkshopSaab.storeVehicle(Volvo);
+        // Gives compile time error
+    }
+    */
+    @Test
+    public void TooManyVehiclesInWorkshop(){
+        int CarsInShop = 0;
+        for(int i = 1; i <= 9; i++){
+            WorkshopSaab.storeVehicle(Saab);
+            CarsInShop++;
+        }
+        assertTrue("Too many vehicles in Workshop", CarsInShop > WorkshopSaab.vehicleLimit);
+    }
+
 
 }
 

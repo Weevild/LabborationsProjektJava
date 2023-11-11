@@ -13,6 +13,9 @@ public class Volvo240 extends Car{
         yCoordinate = 0;
         stopEngine();
     }
+    public String getModelName() {
+        return modelName;
+    }
     @Override
     public double speedFactor() {
         return enginePower * 0.01 * trimFactor;

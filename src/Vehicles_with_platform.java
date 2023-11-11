@@ -1,3 +1,5 @@
+package src;
+
 public abstract class Vehicles_with_platform extends Car implements Movable {
 
     private int platformAngle;

@@ -13,6 +13,10 @@ public class Saab95 extends Car {
         modelName = "Saab95";
         stopEngine();
     }
+    public String getModelName() {
+        return modelName;
+    }
+
     public void setTurboOn(){
         turboOn = true;
     }

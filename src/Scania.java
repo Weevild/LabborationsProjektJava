@@ -1,3 +1,5 @@
+package src;
+
 import java.awt.*;
 
 public class Scania extends Vehicles_with_platform {
@@ -13,6 +15,9 @@ public class Scania extends Vehicles_with_platform {
         maxAngle = 70;
         minAngle = 0;
         stopEngine();
+    }
+    public String getModelName() {
+        return modelName;
     }
 
     @Override
