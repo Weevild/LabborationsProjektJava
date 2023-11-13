@@ -1,8 +1,8 @@
 public abstract class Vehicles_with_platform extends Car implements Movable {
 
-    private int platformAngle;
-    public static int maxAngle;
-    public static int minAngle;
+    private double platformAngle;
+    public int maxAngle;
+    public int minAngle;
     private boolean canMove;
 
     public Vehicles_with_platform(){   // initializes platform angle as the lowest possible angle
@@ -10,23 +10,21 @@ public abstract class Vehicles_with_platform extends Car implements Movable {
     }
 
     public abstract boolean canMoveCheck();
-    public int getPlatformPosition() {
+    public double getPlatformPosition() {
         return platformAngle;
     }
-    public void platformUp(int amount) {
-        int newAngle  = Math.min(getPlatformPosition() + amount, minAngle);
-        //if (newAngle >= getPlatformPosition()) {
+    public void platformUp(double amount) {
+        double newAngle  = Math.min(getPlatformPosition() + amount, maxAngle);
+        if (newAngle >= getPlatformPosition()) {
             platformAngle = newAngle;
-        //}
+        }
     }
-    public void platformDown(int amount) {
-        int newAngle  = Math.max(getPlatformPosition() - amount, minAngle);
-        //if (newAngle <= getPlatformPosition()) {
+    public void platformDown(double amount) {
+
+        double newAngle  = Math.max(getPlatformPosition() - amount, minAngle);
+        if (newAngle <= getPlatformPosition()) {
             platformAngle = newAngle;
-        //}
-
-
-
+        }
     }
 
     @Override
