@@ -227,7 +227,19 @@ public class TestsCar {
             WorkshopSaab.storeVehicle(Saab);
             CarsInShop++;
         }
-        assertTrue("Too many vehicles in Workshop", CarsInShop > WorkshopSaab.vehicleLimit);
+        assertTrue("Too many vehicles in Workshop", CarsInShop > WorkshopSaab.getVehicleLimit());
+    }
+
+    @Test
+    public void NoVehiclesAvailableToRemove(){
+        WorkshopSaab.storeVehicle(Saab);
+        assertEquals("The workshop should have 1 vehicle", 1, WorkshopSaab.vehicles.size());
+
+        WorkshopSaab.removeVehicle(Saab);
+        assertEquals("The workshop should have 0 vehicles", 0, WorkshopSaab.vehicles.size());
+
+        WorkshopSaab.removeVehicle(Saab);
+        assertEquals("The workshop should still have 0 vehicles", 0, WorkshopSaab.vehicles.size());
     }
 
 
