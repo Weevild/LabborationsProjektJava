@@ -1,5 +1,3 @@
-package src;
-
 public abstract class Vehicles_with_platform extends Car implements Movable {
 
     private double platformAngle;
@@ -16,16 +14,19 @@ public abstract class Vehicles_with_platform extends Car implements Movable {
         return platformAngle;
     }
     public void platformUp(double amount) {
-        double newAngle  = Math.min(getPlatformPosition() + amount, maxAngle);
-        if (newAngle >= getPlatformPosition()) {
-            platformAngle = newAngle;
+        if (!canMoveCheck()) {
+            double newAngle = Math.min(getPlatformPosition() + amount, maxAngle);
+            if (newAngle >= getPlatformPosition()) {
+                platformAngle = newAngle;
+            }
         }
     }
     public void platformDown(double amount) {
-
+        if (!canMoveCheck()) {
         double newAngle  = Math.max(getPlatformPosition() - amount, minAngle);
         if (newAngle <= getPlatformPosition()) {
             platformAngle = newAngle;
+        }
         }
     }
 

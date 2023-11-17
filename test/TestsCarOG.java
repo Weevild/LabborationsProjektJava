@@ -1,11 +1,10 @@
-package src;
-
 import org.junit.Test;
 import org.junit.Assert;
+
 import java.awt.Color;
 import static org.junit.Assert.*;
 
-public class TestsCar {
+public class TestsCarOG {
 
     public Saab95 Saab = new Saab95();
     public Volvo240 Volvo = new Volvo240();

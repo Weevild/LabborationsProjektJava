@@ -1,5 +1,3 @@
-package src;
-
 import java.awt.*;
 
 public class Scania extends Vehicles_with_platform {

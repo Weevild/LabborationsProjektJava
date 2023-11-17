@@ -1,5 +1,3 @@
-package src;
-
 import java.awt.*;
 public abstract class Car implements Movable {
         private final String[] directions = {"N", "E", "S", "W"};
