@@ -21,7 +21,7 @@ public class TestCarTransport {
         transporter.storeVehicle(saab);
         transporter.startEngine();
         transporter.gas(0.5);
-        assertEquals("Driving forward works", saab.getYCoordinate(), transporter.getYCoordinate(), 0.0);
+        assertEquals("Stored vehicle should move together with transporter", saab.getYCoordinate(), transporter.getYCoordinate(), 0.0);
 
     }
 
