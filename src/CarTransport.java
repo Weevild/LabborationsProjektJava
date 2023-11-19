@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import static java.lang.Math.abs;
 
 public class CarTransport extends Vehicles_with_platform implements StorageThings{
     public CarTransport(){
@@ -9,32 +10,43 @@ public class CarTransport extends Vehicles_with_platform implements StorageThing
         color = Color.cyan;
         enginePower = 400;
         modelName = "Example Car Transport";
-        xCoordinate = 0;
-        yCoordinate = 0;
-        maxAngle = 1;
-        minAngle = 0;
+        setXCoordinate(0);
+        setYCoordinate(0);
+        setFixedPlatformPosition(true);
         stopEngine();
     }
-
-    Car testSaab = new Saab95();
-    List<Car> storage = new ArrayList<>();
-
-
     @Override
     public void storeVehicle(){
-        storage.add(testSaab);
     }
 
+    public void storeVehicle(Car vehicle) {
+        if (Math.abs(vehicle.getXCoordinate()) - Math.abs(this.getXCoordinate()) <= 10  && Math.abs(vehicle.getYCoordinate()) - Math.abs(this.getYCoordinate()) <= 10 && !(vehicle instanceof CarTransport) && getFixedPlatformPosition()) {
+            getStorage().add(vehicle);
+        }
+    }
     @Override
     public void removeVehicle(){
     }
 
-    @Override
-    public List getStorage(){
-        return storage;
+    public Car removeLastVehicle(){
+        if (!getStorage().isEmpty() && getFixedPlatformPosition()) {
+            int index = getStorage().size() - 1;
+            Car car = getStorage().get(index); // Get the last car
+
+            double offsetX = 5 * (index + 1); // Increment offset for each car
+            double offsetY = 5 * (index + 1);
+
+            // Update car's position
+            car.setXCoordinate(this.getXCoordinate() + offsetX);
+            car.setYCoordinate(this.getYCoordinate() + offsetY);
+
+            // Remove and return the car
+            return getStorage().remove(index);
+        }
+        return null;
     }
     @Override
     public boolean canMoveCheck(){
-        return getPlatformPosition() == maxAngle;
+        return getPlatformPosition() == maxAngle || getFixedPlatformPosition();
     }
 }

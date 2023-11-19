@@ -43,7 +43,7 @@ public class TestScania {
     public void TryingToMoveTheTruckWithPlatformInTheWrongPosition(){
         Scania.platformUp(50);
         Scania.move();
-        assertEquals("One cannot move the Scania when the platform is in the wrong position", 0, Scania.getyCoordinate(), 5);
+        assertEquals("One cannot move the Scania when the platform is in the wrong position", 0, Scania.getYCoordinate(), 5);
     }
     @Test
     public void TryingToMoveWithPlatformInTheRightPosition(){

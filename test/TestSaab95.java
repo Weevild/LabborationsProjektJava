@@ -55,11 +55,11 @@ public class TestSaab95 {
     }
     @Test
     public void getXCoordinate() {
-        assertEquals("GetxCoordinate works", Saab.getxCoordinate(), 0, 3);
+        assertEquals("GetxCoordinate works", Saab.getXCoordinate(), 0, 3);
     }
     @Test
     public void getYCoordinate() {
-        assertEquals("GetyCoordinate works", Saab.getyCoordinate(), 0, 3);
+        assertEquals("GetyCoordinate works", Saab.getYCoordinate(), 0, 3);
     }
     @Test
     public void getColour() {
@@ -92,7 +92,7 @@ public class TestSaab95 {
         Saab.startEngine();
         Saab.gas(0.5);
         Saab.move();
-        assertEquals("Driving forward works", Saab.getyCoordinate(), 0.725, 5);
+        assertEquals("Driving forward works", Saab.getYCoordinate(), 0.725, 5);
     }
     @Test
     public void DrivingBackwards(){
@@ -101,7 +101,7 @@ public class TestSaab95 {
         Saab.turnLeft();
         Saab.turnLeft();
         Saab.move();
-        assertEquals("Driving backwards works", Saab.getyCoordinate(), -0.725, 5);
+        assertEquals("Driving backwards works", Saab.getYCoordinate(), -0.725, 5);
     }
     @Test
     public void DrivingToTheRight(){
@@ -109,7 +109,7 @@ public class TestSaab95 {
         Saab.gas(0.5);
         Saab.turnRight();
         Saab.move();
-        assertEquals("Driving right works", Saab.getxCoordinate(), 0.725, 5);
+        assertEquals("Driving right works", Saab.getXCoordinate(), 0.725, 5);
     }
     @Test
     public void DrivingToTheLeft(){
@@ -117,7 +117,7 @@ public class TestSaab95 {
         Saab.gas(0.5);
         Saab.turnLeft();
         Saab.move();
-        assertEquals("Driving left works", Saab.getxCoordinate(), -0.725, 5);
+        assertEquals("Driving left works", Saab.getXCoordinate(), -0.725, 5);
     }
     @Test
     public void BrakingWithoutTurboSaab(){

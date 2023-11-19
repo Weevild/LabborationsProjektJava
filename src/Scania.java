@@ -8,8 +8,8 @@ public class Scania extends Vehicles_with_platform {
         color = Color.white;
         enginePower = 300;
         modelName = "Scania";
-        xCoordinate = 0;
-        yCoordinate = 0;
+        setXCoordinate(0);
+        setYCoordinate(0);
         maxAngle = 70;
         minAngle = 0;
         stopEngine();

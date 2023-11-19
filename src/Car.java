@@ -7,8 +7,8 @@ public abstract class Car implements Movable {
         public Color color; // Color of the car
         public String modelName; // The car model name
         public int direction; // The direction that the car is facing
-        public double xCoordinate; // The x coordinate of the car
-        public double yCoordinate; // The Y coordinate of the car
+        private double xCoordinate; // The x coordinate of the car
+        private double yCoordinate; // The Y coordinate of the car
         public int getNrDoors(){
             return nrDoors;
         }
@@ -24,13 +24,16 @@ public abstract class Car implements Movable {
         public String getDirection() {
             return directions[direction];
         }
-        public double getxCoordinate(){
+        public double getXCoordinate(){
             return xCoordinate;
         }
-        public double getyCoordinate(){
+        public double getYCoordinate(){
             return yCoordinate;
         }
-        public void setColor(Color clr){
+        public void setXCoordinate(double x) {this.xCoordinate = x;}
+        public void setYCoordinate(double y) {this.yCoordinate = y;}
+
+    public void setColor(Color clr){
             color = clr;
         }
         public void startEngine(){
@@ -46,16 +49,16 @@ public abstract class Car implements Movable {
             double speed = getCurrentSpeed();
             String currentDirection = getDirection();
             if (currentDirection.equals("N")){
-                yCoordinate = getyCoordinate() + speed;
+                yCoordinate = getYCoordinate() + speed;
             }
             else if (currentDirection.equals("S")){
-                yCoordinate = getyCoordinate() - speed;
+                yCoordinate = getYCoordinate() - speed;
             }
             else if (currentDirection.equals("E")){
-                xCoordinate = getxCoordinate() + speed;
+                xCoordinate = getYCoordinate() + speed;
             }
             else if (currentDirection.equals("W")){
-                xCoordinate = getxCoordinate() - speed;
+                xCoordinate = getYCoordinate() - speed;
             }
         }
         @Override

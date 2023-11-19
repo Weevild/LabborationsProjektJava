@@ -3,8 +3,8 @@ public class Saab95 extends Car {
     private boolean turboOn;
     public Saab95(){
         direction = 0;
-        xCoordinate = 0;
-        yCoordinate = 0;
+        setXCoordinate(0);
+        setYCoordinate(0);
         nrDoors = 2;
         color = Color.red;
         enginePower = 125;

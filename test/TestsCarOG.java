@@ -61,11 +61,11 @@ public class TestsCarOG {
     }
     @Test
     public void getXCoordinate() {
-        assertEquals("Getxcoordinat works", Saab.getxCoordinate(), 0, 3);
+        assertEquals("Getxcoordinat works", Saab.getXCoordinate(), 0, 3);
     }
     @Test
     public void getYCoordinate() {
-        assertEquals("Getycoordinate works", Saab.getyCoordinate(), 0, 3);
+        assertEquals("getYCoordinate works", Saab.getYCoordinate(), 0, 3);
     }
     @Test
     public void getColour() {
@@ -98,7 +98,7 @@ public class TestsCarOG {
         Saab.startEngine();
         Saab.gas(0.5);
         Saab.move();
-        assertEquals("Driving forward works", Saab.getyCoordinate(), 0.725, 5);
+        assertEquals("Driving forward works", Saab.getYCoordinate(), 0.725, 5);
     }
     @Test
     public void DrivingBackwards(){
@@ -107,7 +107,7 @@ public class TestsCarOG {
         Saab.turnLeft();
         Saab.turnLeft();
         Saab.move();
-        assertEquals("Driving backwords works", Saab.getyCoordinate(), -0.725, 5);
+        assertEquals("Driving backwords works", Saab.getYCoordinate(), -0.725, 5);
     }
     @Test
     public void DrivingToTheRight(){
@@ -115,7 +115,7 @@ public class TestsCarOG {
         Saab.gas(0.5);
         Saab.turnRight();
         Saab.move();
-        assertEquals("Driving right works", Saab.getxCoordinate(), 0.725, 5);
+        assertEquals("Driving right works", Saab.getXCoordinate(), 0.725, 5);
     }
     @Test
     public void DrivingToTheLeft(){
@@ -123,7 +123,7 @@ public class TestsCarOG {
         Saab.gas(0.5);
         Saab.turnLeft();
         Saab.move();
-        assertEquals("Driving left works", Saab.getxCoordinate(), -0.725, 5);
+        assertEquals("Driving left works", Saab.getXCoordinate(), -0.725, 5);
     }
     @Test
     public void BrakingWithoutTurboSaab(){
@@ -205,7 +205,7 @@ public class TestsCarOG {
     public void TryingToMoveTheTruckWithPlatformInTheWrongPosition(){
         Scania.platformUp(50);
         Scania.move();
-        assertEquals("One cannot move the Scania when the platform is in the wrong position", 0, Scania.getyCoordinate(), 5);
+        assertEquals("One cannot move the Scania when the platform is in the wrong position", 0, Scania.getYCoordinate(), 5);
     }
     @Test
     public void TryingToMoveWithPlatformInTheRightPosition(){

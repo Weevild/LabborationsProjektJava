@@ -8,8 +8,8 @@ public class Volvo240 extends Car{
         color = Color.black;
         enginePower = 100;
         modelName = "Volvo240";
-        xCoordinate = 0;
-        yCoordinate = 0;
+        setXCoordinate(0);
+        setYCoordinate(0);
         stopEngine();
     }
     public String getModelName() {
