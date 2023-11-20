@@ -1,5 +1,7 @@
 import java.awt.*;
 public abstract class Car implements Movable {
+        // Skapa universell konstruktor
+        // Kolla om bilen är förvarad boolean i konstruktor
         private final String[] directions = {"N", "E", "S", "W"};
         public int nrDoors; // Number of doors on the car
         public double enginePower; // Engine power of the car
@@ -33,6 +35,10 @@ public abstract class Car implements Movable {
         public void setXCoordinate(double x) {this.xCoordinate = x;}
         public void setYCoordinate(double y) {this.yCoordinate = y;}
 
+    public Car(double x, double y) {
+            this.xCoordinate = x;
+            this.yCoordinate = y;
+    }
     public void setColor(Color clr){
             color = clr;
         }
@@ -42,7 +48,7 @@ public abstract class Car implements Movable {
         public void stopEngine(){
             currentSpeed = 0;
         }
-
+        // Skaffa enums
         @Override
         public void move() {
 
@@ -72,13 +78,13 @@ public abstract class Car implements Movable {
         public double speedFactor(){
             return enginePower * 0.01;
         }
-        public void incrementSpeed(double amount){
+        protected void incrementSpeed(double amount){
             double newSpeed  = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
             if (newSpeed > getCurrentSpeed()) {
                 currentSpeed = newSpeed;
             }
         }
-        public void decrementSpeed(double amount){
+        protected void decrementSpeed(double amount){
             double newSpeed  = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
             if (newSpeed <= getCurrentSpeed()) {
                 currentSpeed = newSpeed;
