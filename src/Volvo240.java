@@ -3,17 +3,8 @@ import java.awt.*;
 public class Volvo240 extends Car{
     private final static double trimFactor = 1.25;
     public Volvo240(){
-        direction = 0;
-        nrDoors = 4;
+        super(4,100,0,0,"Volvo240");
         color = Color.black;
-        enginePower = 100;
-        modelName = "Volvo240";
-        setXCoordinate(0);
-        setYCoordinate(0);
-        stopEngine();
-    }
-    public String getModelName() {
-        return modelName;
     }
     @Override
     public double speedFactor() {

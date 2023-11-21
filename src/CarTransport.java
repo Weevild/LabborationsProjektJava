@@ -5,14 +5,8 @@ import static java.lang.Math.abs;
 
 public class CarTransport extends Vehicles_with_platform implements Loadable<Car>{
     public CarTransport(){
-        super();
-        direction = 0;
-        nrDoors = 2;
+        super(2,400,0,0,"Car Transport");
         color = Color.cyan;
-        enginePower = 400;
-        modelName = "Example Car Transport";
-        setXCoordinate(0);
-        setYCoordinate(0);
         setFixedPlatformPosition(true);
         stopEngine();
     }

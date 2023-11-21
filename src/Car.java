@@ -2,13 +2,22 @@ import java.awt.*;
 public abstract class Car implements Movable {
         // Skapa universell konstruktor
         // Kolla om bilen är förvarad boolean i konstruktor
+    public Car(int nr, int power, double x, double y, String model){
+        this.direction = 0;
+        this.xCoordinate = x;
+        this.yCoordinate = y;
+        this.nrDoors = nr;
+        enginePower = power;
+        modelName = model;
+        stopEngine();
+    }
         private final String[] directions = {"N", "E", "S", "W"};
-        public int nrDoors; // Number of doors on the car
-        public double enginePower; // Engine power of the car
+        private int nrDoors; // Number of doors on the car
+        protected double enginePower; // Engine power of the car
         private double currentSpeed; // The current speed of the car must be public
         public Color color; // Color of the car
-        public String modelName; // The car model name
-        public int direction; // The direction that the car is facing
+        private String modelName; // The car model name
+        private int direction; // The direction that the car is facing
         private double xCoordinate; // The x coordinate of the car
         private double yCoordinate; // The Y coordinate of the car
         public int getNrDoors(){
@@ -23,6 +32,9 @@ public abstract class Car implements Movable {
         public Color getColor(){
             return color;
         }
+        public String getModelName() {
+        return modelName;
+    }
         public String getDirection() {
             return directions[direction];
         }
@@ -35,10 +47,6 @@ public abstract class Car implements Movable {
         public void setXCoordinate(double x) {this.xCoordinate = x;}
         public void setYCoordinate(double y) {this.yCoordinate = y;}
 
-    public Car(double x, double y) {
-            this.xCoordinate = x;
-            this.yCoordinate = y;
-    }
     public void setColor(Color clr){
             color = clr;
         }
