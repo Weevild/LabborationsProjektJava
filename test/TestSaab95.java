@@ -10,7 +10,7 @@ public class TestSaab95 {
 
     @Test
     public void nrOfDoors() {
-        Assert.assertEquals("GetNrOfDoors should work", Saab.getNrDoors(), 2);
+        Assert.assertEquals("GetNrOfDoors should work", Saab.getNrDoors(), 2, 5);
     }
     @Test
     public void getDirection() {

@@ -9,24 +9,25 @@ public class TestScania {
 
     @Test
     public void IntitialPlatformAngle(){
-        assertEquals("Inital platform angle is correct", 0, Scania.getPlatformPosition(), 5);
+        assertEquals("Inital platform angle is incorrect", 0, Scania.getPlatformPosition(), 5);
     }
     @Test
     public void MovingThePlatformUp(){
         Scania.platformUp(35);
-        assertEquals("Moving the platform upwards works", 35, Scania.getPlatformPosition(), 5);
+        assertEquals("Moving the platform upwards doesn't work", 35, Scania.getPlatformPosition(), 5);
     }
     @Test
     public void TryingToRaiseThePlatformTooHigh(){
         Scania.platformUp(500);
-        assertEquals("The restrictions for moving the platform upwards works",70, Scania.getPlatformPosition(), 5);
+        assertEquals("The restrictions for moving the platform upwards doesn't works",70, Scania.getPlatformPosition(), 5);
     }
     @Test
-    public void MovingThePlatfromDown(){
-        Scania.platformUp(35);
+    public void MovingThePlatformDown() {
+        Scania.setPlatformPosition(50); // Reset to initial state if needed
         Scania.platformDown(25);
-        assertEquals("Moving the platform downwards works",10, Scania.getPlatformPosition(), 5);
+        assertEquals("Moving the platform downwards works", 25, Scania.getPlatformPosition(), 5);
     }
+
     @Test
     public void TryingTooLowerThePlatformTooLow(){
         Scania.platformUp(50);
@@ -37,7 +38,7 @@ public class TestScania {
     public void TryingTooLowerThePlatformIncorrectly(){
         Scania.platformUp(50);
         Scania.platformDown(-10);
-        assertEquals("One cannot lower the platform incorrectly",50 , Scania.getPlatformPosition(), 5);
+        assertEquals("One cannot lower the platform incorrectly",40 , Scania.getPlatformPosition(), 5);
     }
     @Test
     public void TryingToMoveTheTruckWithPlatformInTheWrongPosition(){

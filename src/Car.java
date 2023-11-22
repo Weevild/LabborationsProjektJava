@@ -1,22 +1,23 @@
 import java.awt.*;
 public abstract class Car implements Movable {
-        // Skapa universell konstruktor
-        // Kolla om bilen är förvarad boolean i konstruktor
-    public Car(int nr, int power, double x, double y, String model){
+
+    public Car(int nr, int power, double x, double y, boolean stored, String model){
         this.direction = 0;
         this.xCoordinate = x;
         this.yCoordinate = y;
         this.nrDoors = nr;
+        this.isStored = stored;
         enginePower = power;
         modelName = model;
         stopEngine();
     }
-        private final String[] directions = {"N", "E", "S", "W"};
+        private final String[] directions = {"N", "E", "S", "W"}; // Direction is decided by using the indexes of the letters
         private int nrDoors; // Number of doors on the car
         protected double enginePower; // Engine power of the car
         private double currentSpeed; // The current speed of the car must be public
-        public Color color; // Color of the car
+        protected Color color; // Color of the car
         private String modelName; // The car model name
+        private boolean isStored;
         private int direction; // The direction that the car is facing
         private double xCoordinate; // The x coordinate of the car
         private double yCoordinate; // The Y coordinate of the car
@@ -59,20 +60,18 @@ public abstract class Car implements Movable {
         // Skaffa enums
         @Override
         public void move() {
-
-            double speed = getCurrentSpeed();
-            String currentDirection = getDirection();
-            if (currentDirection.equals("N")){
-                yCoordinate = getYCoordinate() + speed;
-            }
-            else if (currentDirection.equals("S")){
-                yCoordinate = getYCoordinate() - speed;
-            }
-            else if (currentDirection.equals("E")){
-                xCoordinate = getYCoordinate() + speed;
-            }
-            else if (currentDirection.equals("W")){
-                xCoordinate = getYCoordinate() - speed;
+            if (!getIsStored()) {
+                double speed = getCurrentSpeed();
+                String currentDirection = getDirection();
+                if (currentDirection.equals("N")) {
+                    yCoordinate = getYCoordinate() + speed;
+                } else if (currentDirection.equals("S")) {
+                    yCoordinate = getYCoordinate() - speed;
+                } else if (currentDirection.equals("E")) {
+                    xCoordinate = getYCoordinate() + speed;
+                } else if (currentDirection.equals("W")) {
+                    xCoordinate = getYCoordinate() - speed;
+                }
             }
         }
         @Override

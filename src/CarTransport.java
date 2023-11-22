@@ -5,7 +5,7 @@ import static java.lang.Math.abs;
 
 public class CarTransport extends Vehicles_with_platform implements Loadable<Car>{
     public CarTransport(){
-        super(2,400,0,0,"Car Transport");
+        super(2,400,0,0,false,"Car Transport");
         color = Color.cyan;
         setFixedPlatformPosition(true);
         stopEngine();
@@ -14,6 +14,7 @@ public class CarTransport extends Vehicles_with_platform implements Loadable<Car
     // Stores an object (vehicle) if the absolute value of the distance between vehicle and transporter is below 10 and that the platform is in "down"-position.
     public void storeVehicle(Car vehicle) {
         if (Math.abs(vehicle.getXCoordinate()) - Math.abs(this.getXCoordinate()) <= 10  && Math.abs(vehicle.getYCoordinate()) - Math.abs(this.getYCoordinate()) <= 10 && !(vehicle instanceof CarTransport) && getFixedPlatformPosition()) {
+            setIsStored(true);
             getStorage().add(vehicle);
         }
     }
@@ -34,14 +35,16 @@ public class CarTransport extends Vehicles_with_platform implements Loadable<Car
             car.setXCoordinate(this.getXCoordinate() + offsetX);
             car.setYCoordinate(this.getYCoordinate() + offsetY);
 
-            // Remove and return the car
+            // Lets the car move again
+            setIsStored(false);
+
             return getStorage().remove(index);
         }
         return null;
     }
-    // Checks so that either an angled or fixed platform is in their lowered position
+    // Checks so that either a fixed platform is in their lowered position
     @Override
-    public boolean canMoveCheck(){
+    public boolean cannotMove(){
         return getFixedPlatformPosition();
     }
 }

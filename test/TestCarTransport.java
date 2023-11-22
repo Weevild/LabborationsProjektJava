@@ -31,5 +31,13 @@ public class TestCarTransport {
         transporter.removeLastVehicle();
         assertEquals("Stored vehicle should be placed within reasonable distance to the transporter", 5.0, saab.getYCoordinate(), 0.001);
     }
+    @Test
+    public void TryingToMoveStoredVehicleInTransport(){
+        transporter.storeVehicle(saab);
+        saab.startEngine();
+        saab.gas(5);
+        saab.move();
+        assertEquals("Saab shouldn't have moved when stored", saab.getXCoordinate(), 0, 5);
+    }
 
 }
