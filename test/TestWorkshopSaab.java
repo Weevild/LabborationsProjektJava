@@ -9,7 +9,7 @@ public class TestWorkshopSaab {
     Saab95 Saab = new Saab95();
     Volvo240 volvo = new Volvo240();
 
-    public Workshop<Saab95> Workshop = new Workshop<>();
+    public Workshop<Saab95> Workshop = new Workshop<Saab95>();
             ;
     /*
     @Test
@@ -31,13 +31,13 @@ public class TestWorkshopSaab {
     @Test
     public void NoVehiclesAvailableToRemove(){
         Workshop.storeVehicle(Saab);
-        assertEquals("The workshop should have 1 vehicle", 1, Workshop.vehicles.size(), 5);
+        assertEquals("The workshop should have 1 vehicle", 1, Workshop.getStorage().size(), 5);
 
         Workshop.removeVehicle(Saab);
-        assertEquals("The workshop should have 0 vehicles", 0, Workshop.vehicles.size());
+        assertEquals("The workshop should have 0 vehicles", 0, Workshop.getStorage().size());
 
         Workshop.removeVehicle(Saab);
-        assertEquals("The workshop should still have 0 vehicles", 0, Workshop.vehicles.size());
+        assertEquals("The workshop should still have 0 vehicles", 0, Workshop.getStorage().size());
     }
 
 }
