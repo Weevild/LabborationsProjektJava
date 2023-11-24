@@ -1,3 +1,5 @@
+package Car;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.Math;
@@ -8,7 +10,7 @@ public abstract class Vehicles_with_platform extends Car implements Movable {
         super(0,0,0,0,false,"");
     }
     public Vehicles_with_platform(int nr, int power, double x, double y, boolean stored, String model) {
-        super(nr, power, x, y, stored, model); // Calls Car's constructor with the given arguments
+        super(nr, power, x, y, stored, model); // Calls Car.Car's constructor with the given arguments
         stopEngine();
     }
     private double platformAngle; // For vehicles with adjustable platform

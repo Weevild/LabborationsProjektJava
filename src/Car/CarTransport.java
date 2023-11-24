@@ -1,11 +1,12 @@
+package Car;
+
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+
 import static java.lang.Math.abs;
 
 public class CarTransport extends Vehicles_with_platform implements Loadable<Car>{
     public CarTransport(){
-        super(2,400,0,0,false,"Car Transport");
+        super(2,400,0,0,false,"Car.Car Transport");
         color = Color.cyan;
         setFixedPlatformPosition(true);
         stopEngine();

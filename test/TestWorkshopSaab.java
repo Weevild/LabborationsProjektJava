@@ -1,3 +1,6 @@
+import Car.Saab95;
+import Car.Volvo240;
+import Car.Workshop;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -22,7 +25,7 @@ public class TestWorkshopSaab {
             Workshop.storeVehicle(Saab);
             CarsInShop++;
         }
-        assertTrue("Too many vehicles in Workshop", CarsInShop > Workshop.getVehicleLimit());
+        assertTrue("Too many vehicles in Car.Workshop", CarsInShop > Workshop.getVehicleLimit());
     }
 
     @Test

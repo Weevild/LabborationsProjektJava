@@ -1,3 +1,5 @@
+package Car;
+
 import java.awt.*;
 interface Movable {
     void move();

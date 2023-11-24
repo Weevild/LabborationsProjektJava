@@ -1,5 +1,6 @@
+import Car.CarTransport;
+import Car.Saab95;
 import org.junit.Test;
-import org.junit.Assert;
 
 import static org.junit.Assert.*;
 

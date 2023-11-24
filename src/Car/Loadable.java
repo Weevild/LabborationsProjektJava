@@ -1,3 +1,5 @@
+package Car;
+
 import java.util.List;
 
 public interface Loadable<T extends Car> {
