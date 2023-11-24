@@ -45,8 +45,12 @@ public abstract class Car implements Movable {
         public double getYCoordinate(){
             return yCoordinate;
         }
+
+        public boolean getIsStored() {return this.isStored;}
         public void setXCoordinate(double x) {this.xCoordinate = x;}
         public void setYCoordinate(double y) {this.yCoordinate = y;}
+
+        protected void setIsStored(boolean stored) {this.isStored = stored;}
 
     public void setColor(Color clr){
             color = clr;
