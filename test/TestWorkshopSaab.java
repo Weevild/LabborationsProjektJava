@@ -10,7 +10,6 @@ public class TestWorkshopSaab {
     Volvo240 volvo = new Volvo240();
 
     public Workshop<Saab95> Workshop = new Workshop<Saab95>();
-            ;
     /*
     @Test
     public void TryToStoreWrongModelInWorkshop(){
