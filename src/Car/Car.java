@@ -23,6 +23,10 @@ public abstract class Car implements Movable {
         private int direction; // The direction that the car is facing
         private double xCoordinate; // The x coordinate of the car
         private double yCoordinate; // The Y coordinate of the car
+        private boolean isCarRunning;
+
+        private boolean isCarRunning() { return isCarRunning; }
+        public boolean getisCarRunning(){ return this.isCarRunning; }
         public int getNrDoors(){
             return nrDoors;
         }
@@ -54,16 +58,17 @@ public abstract class Car implements Movable {
 
         protected void setIsStored(boolean stored) {this.isStored = stored;}
 
-    public void setColor(Color clr){
+        public void setColor(Color clr){
             color = clr;
         }
         public void startEngine(){
             currentSpeed = 0.1;
+            this.isCarRunning = true;
         }
         public void stopEngine(){
             currentSpeed = 0;
+            this.isCarRunning = false;
         }
-        // Skaffa enums
         @Override
         public void move() {
             if (!getIsStored()) {
@@ -105,7 +110,7 @@ public abstract class Car implements Movable {
         }
 
         public void gas(double amount){
-            if (amount > 0 && amount < 1){
+            if (amount > 0 && amount < 1 && getisCarRunning()){
                 incrementSpeed(amount);
             }
         }
