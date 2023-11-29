@@ -18,7 +18,7 @@ public class CarController {
     // member fields:
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 50;
+    private final int delay = 5;
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
@@ -102,28 +102,33 @@ public class CarController {
 
     public void carOutOfBounds() {
         for (Car car : cars) {
-            if (0 > car.getXCoordinate() || CarView.getXBoundary() < car.getXCoordinate()) {
+            if (0 > car.getXCoordinate() || CarView.getXBoundary() - 100 < car.getXCoordinate()) {
+                // Adjust car's X position to within boundaries
+                double newX = Math.max(0, Math.min(car.getXCoordinate(), CarView.getXBoundary() - 100));
+                car.setXCoordinate(newX);
+
                 stopEngine();
                 if (car.getDirection() == car.getDirectionIndex(Car.Direction.WEST)) {
                     car.setDirection(Car.Direction.EAST);
-                    startEngine();
                 } else if (car.getDirection() == car.getDirectionIndex(Car.Direction.EAST)) {
                     car.setDirection(Car.Direction.WEST);
-                    startEngine();
                 }
+                startEngine();
             } else if (0 > car.getYCoordinate() || CarView.getYBoundary() - 300 < car.getYCoordinate()) {
+                // Adjust car's Y position to within boundaries
+                double newY = Math.max(0, Math.min(car.getYCoordinate(), CarView.getYBoundary() - 300));
+                car.setYCoordinate(newY);
+
                 stopEngine();
                 if (car.getDirection() == car.getDirectionIndex(Car.Direction.NORTH)) {
                     car.setDirection(Car.Direction.SOUTH);
-                    startEngine();
                 } else if (car.getDirection() == car.getDirectionIndex(Car.Direction.SOUTH)) {
                     car.setDirection(Car.Direction.NORTH);
-                    startEngine();
                 }
+                startEngine();
             }
-
         }
-
     }
+
 
 }
