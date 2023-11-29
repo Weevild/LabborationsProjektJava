@@ -19,6 +19,9 @@ public class CarView extends JFrame{
     private static final int X = 1500;
     private static final int Y = 1500;
 
+    public static int getXBoundary() { return X; }
+    public static int getYBoundary() { return Y; }
+
     // The controller member
     CarController carC;
 
@@ -92,8 +95,6 @@ public class CarView extends JFrame{
         brakePanel.add(brakeSpinner, BorderLayout.PAGE_END);
 
         this.add(controlPanel);
-
-        controlPanel.setLayout(new GridLayout(2, 1));
 
         controlPanel.setLayout(new GridLayout(2,5));
         controlPanel.add(gasPanel, 0);

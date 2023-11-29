@@ -1,3 +1,4 @@
+import Car.Car;
 import Car.Saab95;
 import org.junit.Test;
 import org.junit.Assert;
@@ -15,7 +16,7 @@ public class TestSaab95 {
     }
     @Test
     public void getDirection() {
-        Assert.assertEquals("Get direction works", Saab.getDirection(), "N");
+        Assert.assertEquals("Get direction works", Saab.getDirectionIndex(Car.Direction.NORTH), 0);
     }
     @Test
     public void TurningLeft() {
@@ -28,7 +29,7 @@ public class TestSaab95 {
         Saab.turnLeft();
         Saab.turnLeft();
         Saab.turnLeft();
-        Assert.assertEquals("Rotating left works", Saab.getDirection(), "N");
+        Assert.assertEquals("Rotating left works", Saab.getDirectionIndex(Car.Direction.NORTH), 0);
     }
     @Test
     public void TurningRight() {
@@ -41,7 +42,7 @@ public class TestSaab95 {
         Saab.turnRight();
         Saab.turnRight();
         Saab.turnRight();
-        Assert.assertEquals("Rotating right works", Saab.getDirection(), "N");
+        Assert.assertEquals("Rotating right works", Saab.getDirectionIndex(Car.Direction.NORTH), 0);
     }
     @Test
     public void StartingEngine() {

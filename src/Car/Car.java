@@ -4,7 +4,7 @@ import java.awt.*;
 public abstract class Car implements Movable {
 
     public Car(int nr, int power, double x, double y, boolean stored, String model){
-        this.direction = 0;
+        this.direction = getDirectionIndex(Direction.SOUTH);
         this.xCoordinate = x;
         this.yCoordinate = y;
         this.nrDoors = nr;
@@ -13,20 +13,41 @@ public abstract class Car implements Movable {
         modelName = model;
         stopEngine();
     }
-        private final String[] directions = {"N", "E", "S", "W"}; // Direction is decided by using the indexes of the letters
-        private int nrDoors; // Number of doors on the car
-        protected double enginePower; // Engine power of the car
-        private double currentSpeed; // The current speed of the car must be public
-        protected Color color; // Color of the car
-        private String modelName; // The car model name
-        private boolean isStored;
-        private int direction; // The direction that the car is facing
-        private double xCoordinate; // The x coordinate of the car
-        private double yCoordinate; // The Y coordinate of the car
-        private boolean isCarRunning;
+    public enum Direction{
+        NORTH,
+        EAST,
+        SOUTH,
+        WEST
+    }
 
-        private boolean isCarRunning() { return isCarRunning; }
-        public boolean getisCarRunning(){ return this.isCarRunning; }
+    Direction[] directions = {Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
+
+    public int getDirectionIndex(Direction direction) {
+        for (int i = 0; i < directions.length; i++) {
+            if (directions[i] == direction) {
+                return i;
+            }
+        }
+        return -1; // Return -1 or throw an exception if the direction is not found
+    }
+
+    public int getDirection(){
+        return this.direction;
+    }
+    public void setDirection(Direction direction){
+        this.direction = getDirectionIndex(direction);
+    }
+    private int nrDoors; // Number of doors on the car
+    protected double enginePower; // Engine power of the car
+    private double currentSpeed; // The current speed of the car
+    protected Color color; // Color of the car
+    private String modelName; // The car model name
+    private boolean isStored;
+    private int direction; // The direction that the car is facing
+    private double xCoordinate; // The x coordinate of the car
+    private double yCoordinate; // The Y coordinate of the car
+    private boolean isCarRunning;
+    public boolean getisCarRunning(){ return this.isCarRunning; }
         public int getNrDoors(){
             return nrDoors;
         }
@@ -41,9 +62,6 @@ public abstract class Car implements Movable {
         }
         public String getModelName() {
         return modelName;
-    }
-        public String getDirection() {
-            return directions[direction];
         }
         public double getXCoordinate(){
             return xCoordinate;
@@ -73,15 +91,14 @@ public abstract class Car implements Movable {
         public void move() {
             if (!getIsStored()) {
                 double speed = getCurrentSpeed();
-                String currentDirection = getDirection();
-                if (currentDirection.equals("N")) {
-                    yCoordinate = getYCoordinate() + speed;
-                } else if (currentDirection.equals("S")) {
+                if (getDirection() == getDirectionIndex(Direction.NORTH)) {
                     yCoordinate = getYCoordinate() - speed;
-                } else if (currentDirection.equals("E")) {
-                    xCoordinate = getYCoordinate() + speed;
-                } else if (currentDirection.equals("W")) {
-                    xCoordinate = getYCoordinate() - speed;
+                } else if (getDirection() == getDirectionIndex(Direction.SOUTH)) {
+                    yCoordinate = getYCoordinate() + speed;
+                } else if (getDirection() == getDirectionIndex(Direction.EAST)) {
+                    xCoordinate = getXCoordinate() - speed;
+                } else if (getDirection() == getDirectionIndex(Direction.WEST)) {
+                    xCoordinate = getXCoordinate() + speed;
                 }
             }
         }

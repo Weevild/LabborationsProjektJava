@@ -1,12 +1,12 @@
 package CarGUI;
 
 import Car.Car;
+import Car.Volvo240;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import Car.Volvo240;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -56,6 +56,7 @@ public class CarController {
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
+            carOutOfBounds();
         }
     }
 
@@ -98,4 +99,31 @@ public class CarController {
             car.turnRight();
         }
     }
+
+    public void carOutOfBounds() {
+        for (Car car : cars) {
+            if (0 > car.getXCoordinate() || CarView.getXBoundary() < car.getXCoordinate()) {
+                stopEngine();
+                if (car.getDirection() == car.getDirectionIndex(Car.Direction.WEST)) {
+                    car.setDirection(Car.Direction.EAST);
+                    startEngine();
+                } else if (car.getDirection() == car.getDirectionIndex(Car.Direction.EAST)) {
+                    car.setDirection(Car.Direction.WEST);
+                    startEngine();
+                }
+            } else if (0 > car.getYCoordinate() || CarView.getYBoundary() - 300 < car.getYCoordinate()) {
+                stopEngine();
+                if (car.getDirection() == car.getDirectionIndex(Car.Direction.NORTH)) {
+                    car.setDirection(Car.Direction.SOUTH);
+                    startEngine();
+                } else if (car.getDirection() == car.getDirectionIndex(Car.Direction.SOUTH)) {
+                    car.setDirection(Car.Direction.NORTH);
+                    startEngine();
+                }
+            }
+
+        }
+
+    }
+
 }
