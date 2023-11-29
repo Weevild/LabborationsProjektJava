@@ -104,6 +104,39 @@ public class CarController {
         }
     }
 
+    public void setTurboOn() {
+        for (Car car : cars) {
+            if (car instanceof Saab95) {
+                ((Saab95) car).setTurboOn();
+            }
+        }
+    }
+
+    public void setTurboOff() {
+        for (Car car : cars) {
+            if (car instanceof Saab95) {
+                ((Saab95) car).setTurboOff();
+            }
+        }
+    }
+
+    public void platformUp(boolean position) {
+        for (Car car : cars) {
+            if (car instanceof Scania) {
+                ((Scania) car).setFixedPlatformPosition(position);
+            }
+        }
+    }
+
+    public void platformDown(boolean position) {
+        for (Car car : cars) {
+            if (car instanceof Scania) {
+                ((Scania) car).setFixedPlatformPosition(position);
+            }
+        }
+    }
+
+
     public void carOutOfBounds() {
         for (Car car : cars) {
             if (0 > car.getXCoordinate() || CarView.getXBoundary() - 100 < car.getXCoordinate()) {
