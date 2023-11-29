@@ -76,7 +76,7 @@ public class CarController {
         }
     }
 
-    void startEngine(){
+    void startEngine() {
         for (Car car : cars) {
             car.startEngine();
         }
@@ -88,14 +88,14 @@ public class CarController {
         }
     }
 
-    void turnLeft(){
-        for(Car car : cars){
+    void turnLeft() {
+        for (Car car : cars) {
             car.turnLeft();
         }
     }
 
-    void turnRight(){
-        for(Car car : cars){
+    void turnRight() {
+        for (Car car : cars) {
             car.turnRight();
         }
     }

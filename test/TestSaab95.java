@@ -21,7 +21,7 @@ public class TestSaab95 {
     @Test
     public void TurningLeft() {
         Saab.turnLeft();
-        Assert.assertEquals("Turning left works", Saab.getDirection(), "E");
+        Assert.assertEquals("Turning left works", Saab.getDirectionIndex(Car.Direction.EAST), 1);
     }
     @Test
     public void RotatingLeftToNorth() {
@@ -34,7 +34,7 @@ public class TestSaab95 {
     @Test
     public void TurningRight() {
         Saab.turnRight();
-        Assert.assertEquals("Turning right works", Saab.getDirection(), "W");
+        Assert.assertEquals("Turning right works", Saab.getDirectionIndex(Car.Direction.WEST), 3);
     }
     @Test
     public void RotatingRight() {
