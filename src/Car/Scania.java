@@ -8,13 +8,13 @@ public class Scania extends Vehicles_with_platform {
         super(2,300,0,0,false,"Scania");
         color = Color.white;
         stopEngine();
-        this.cannotMove();
+        setPlatformPosition(70);
     }
-
+    /*
     @Override
     public boolean cannotMove(){
         return getPlatformPosition() < getMaxAngle();
     }
 
-
+     */
 }

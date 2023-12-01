@@ -120,18 +120,18 @@ public class CarController {
         }
     }
 
-    public void platformUp(boolean position) {
+    public void platformUp(double position) {
         for (Car car : cars) {
             if (car instanceof Scania) {
-                ((Scania) car).setFixedPlatformPosition(position);
+                ((Scania) car).platformUp(position);
             }
         }
     }
 
-    public void platformDown(boolean position) {
+    public void platformDown(double position) {
         for (Car car : cars) {
             if (car instanceof Scania) {
-                ((Scania) car).setFixedPlatformPosition(position);
+                ((Scania) car).platformDown(position);
             }
         }
     }

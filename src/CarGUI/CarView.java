@@ -47,8 +47,7 @@ public class CarView extends JFrame{
     JButton turboOnButton = new JButton("Saab Turbo on");
     JButton turboOffButton = new JButton("Saab Turbo off");
     JButton liftBedButton = new JButton("Scania Lift Bed");
-    JButton lowerBedButton = new JButton("Lower Lift Bed");
-
+    JButton lowerBedButton = new JButton("Scania Lower Bed");
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
 
@@ -181,12 +180,12 @@ public class CarView extends JFrame{
 
         liftBedButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { carC.platformUp(true); }
+            public void actionPerformed(ActionEvent e) { carC.platformUp(70); }
         });
 
         lowerBedButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { carC.platformDown(false); }
+            public void actionPerformed(ActionEvent e) { carC.platformDown(70); }
         });
 
 

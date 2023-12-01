@@ -25,33 +25,26 @@ public abstract class Vehicles_with_platform extends Car implements Movable {
     public List<Car> getStorage(){
         return storage;
     } // Getter for storage list
-    //public abstract boolean canMoveCheck(); // Keeps track of whether vehicle with platform can move
     public double getPlatformPosition() { // Getter for platform angle
         return platformAngle;
     }
-    // Takes angle degrees and raises the platform with said degrees
-    public void setPlatformPosition(double angle){ this.platformAngle = angle; }
+    public void setPlatformPosition(double angle) { this.platformAngle = angle; }
     public boolean cannotMove(){
-        return getPlatformPosition() == maxAngle;
+        return getPlatformPosition() < maxAngle;
     }
-
     public void platformUp(double amount) {
-        if (cannotMove()) {
+        if (getCurrentSpeed() == 0) {
             double newAngle = Math.min(getPlatformPosition() + amount, maxAngle);
             setPlatformPosition(newAngle);
         }
     }
-
-
     // Takes angle degrees and lowers the platform with said degrees
     public void platformDown(double amount) {
-        if (cannotMove()) {
+        if (getCurrentSpeed() == 0) {
             double newAngle = Math.max(getPlatformPosition() - Math.abs(amount), minAngle);
             setPlatformPosition(newAngle);
         }
     }
-
-
     // When called moves the vehicle if canMoveCheck conditions are met
     @Override
     public void move(){
