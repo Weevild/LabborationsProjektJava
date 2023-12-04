@@ -2,9 +2,9 @@ package Car;
 
 import java.lang.Math;
 
-public abstract class Vehicles_with_platform extends Car implements Movable {
+public abstract class VehiclesWithPlatform extends Car implements Movable {
 
-    public Vehicles_with_platform(int nr, int power, double x, double y, boolean stored, String model) {
+    public VehiclesWithPlatform(int nr, int power, double x, double y, boolean stored, String model) {
         super(nr, power, x, y, stored, model); // Calls Car.Car's constructor with the given arguments
         stopEngine();
     }
@@ -13,7 +13,7 @@ public abstract class Vehicles_with_platform extends Car implements Movable {
     public int getMaxAngle(){ return maxAngle; }
     public int getMinAngle(){ return minAngle; }
     private boolean FixedPlatformRetractedPosition; // For vehicles with a platform with only up/down positions, checks if platform is "down".
-    public boolean getFixedPlatformPosition(){ return FixedPlatformRetractedPosition; } // Getter for platform position
+    public boolean FixedPlatformPosition(){ return FixedPlatformRetractedPosition; } // Getter for platform position
     public void setFixedPlatformPosition(boolean position){ this.FixedPlatformRetractedPosition = position; } // Setter for platform position
     private double platformAngle; // For vehicles with adjustable platform
     public double getPlatformPosition() { // Getter for platform angle

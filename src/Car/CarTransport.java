@@ -6,7 +6,7 @@ import java.util.List;
 
 import static java.lang.Math.abs;
 
-public class CarTransport extends Vehicles_with_platform implements Loadable<Car>{
+public class CarTransport extends VehiclesWithPlatform implements Loadable<Car>{
     private List<Car> storage = new ArrayList<>(); // List of stored objects (vehicles), the "platform" if you will.
 
     public CarTransport(){
@@ -18,7 +18,7 @@ public class CarTransport extends Vehicles_with_platform implements Loadable<Car
     @Override
     // Stores an object (vehicle) if the absolute value of the distance between vehicle and transporter is below 10 and that the platform is in "down"-position.
     public void storeVehicle(Car vehicle) {
-        if (Math.abs(vehicle.getXCoordinate()) - Math.abs(this.getXCoordinate()) <= 10  && Math.abs(vehicle.getYCoordinate()) - Math.abs(this.getYCoordinate()) <= 10 && !(vehicle instanceof CarTransport) && getFixedPlatformPosition()) {
+        if (Math.abs(vehicle.getXCoordinate()) - Math.abs(this.getXCoordinate()) <= 10  && Math.abs(vehicle.getYCoordinate()) - Math.abs(this.getYCoordinate()) <= 10 && !(vehicle instanceof CarTransport) && FixedPlatformPosition()) {
             setIsStored(true);
             storage.add(vehicle);
         }
@@ -29,7 +29,7 @@ public class CarTransport extends Vehicles_with_platform implements Loadable<Car
     }
     // Performs the actual removal of a vehicle from the platform and places it within reasonable distance of transporter.
     public Car removeLastVehicle(){
-        if (!storage.isEmpty() && getFixedPlatformPosition()) {
+        if (!storage.isEmpty() && FixedPlatformPosition()) {
             int index = storage.size() - 1;
             Car car = storage.get(index); // Get the last car
 
@@ -50,7 +50,7 @@ public class CarTransport extends Vehicles_with_platform implements Loadable<Car
     // Checks so that either a fixed platform is in their lowered position
     @Override
     public boolean cannotMove(){
-        return getFixedPlatformPosition();
+        return FixedPlatformPosition();
     }
 
     @Override

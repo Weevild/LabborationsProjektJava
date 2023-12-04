@@ -46,7 +46,7 @@ public abstract class Car implements Movable {
     private double xCoordinate; // The x coordinate of the car
     private double yCoordinate; // The Y coordinate of the car
     private boolean isCarRunning;
-    public boolean getisCarRunning(){ return this.isCarRunning; }
+    public boolean isCarRunning(){ return this.isCarRunning; }
     public int getNrDoors(){ return nrDoors; }
     public double getEnginePower(){ return enginePower; }
     public double getCurrentSpeed(){ return currentSpeed; }
@@ -69,7 +69,7 @@ public abstract class Car implements Movable {
     }
     @Override
     public void move() {
-        if (!getIsStored()) {
+        if (!isStored()) {
             double speed = getCurrentSpeed();
             if (getDirection() == getDirectionIndex(Direction.NORTH)) {
                 yCoordinate = getYCoordinate() - speed;
@@ -107,7 +107,7 @@ public abstract class Car implements Movable {
         }
 
         public void gas(double amount){
-            if (amount > 0 && amount < 1 && getisCarRunning()){
+            if (amount > 0 && amount < 1 && isCarRunning()){
                 incrementSpeed(amount);
             }
         }

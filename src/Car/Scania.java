@@ -2,7 +2,7 @@ package Car;
 
 import java.awt.*;
 
-public class Scania extends Vehicles_with_platform {
+public class Scania extends VehiclesWithPlatform {
 
     public Scania(){
         super(2,300,0,0,false,"Scania");
