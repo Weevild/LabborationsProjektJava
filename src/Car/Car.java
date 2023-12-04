@@ -54,7 +54,7 @@ public abstract class Car implements Movable {
     public String getModelName() { return modelName;}
     public double getXCoordinate(){ return xCoordinate;}
     public double getYCoordinate(){ return yCoordinate;}
-    public boolean getIsStored() {return this.isStored;}
+    public boolean isStored() {return this.isStored;}
     public void setXCoordinate(double x) {this.xCoordinate = x;}
     public void setYCoordinate(double y) {this.yCoordinate = y;}
     protected void setIsStored(boolean stored) {this.isStored = stored;}
