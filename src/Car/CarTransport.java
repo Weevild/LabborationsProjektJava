@@ -6,7 +6,7 @@ import java.util.List;
 
 import static java.lang.Math.abs;
 
-public class CarTransport extends Vehicles_with_platform implements Loadable<Car>{
+public class CarTransport extends VehiclesWithPlatform implements Loadable<Car>{
     private List<Car> storage = new ArrayList<>(); // List of stored objects (vehicles), the "platform" if you will.
 
     public CarTransport(){
@@ -24,11 +24,9 @@ public class CarTransport extends Vehicles_with_platform implements Loadable<Car
         }
     }
     // Implements removeVehicle() since it's obligatory.
-    @Override
-    public void removeVehicle(Car vehicle){
-    }
+
     // Performs the actual removal of a vehicle from the platform and places it within reasonable distance of transporter.
-    public Car removeLastVehicle(){
+    public Car removeVehicle(){
         if (!storage.isEmpty() && getFixedPlatformPosition()) {
             int index = storage.size() - 1;
             Car car = storage.get(index); // Get the last car
