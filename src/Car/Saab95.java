@@ -4,7 +4,7 @@ import java.awt.*;
 public class Saab95 extends Car {
     private boolean turboOn;
     public Saab95(){
-        super(0,125,0,0, false, "Saab95");
+        super(0,125,0,0, false,"Car.Saab95");
         color = Color.red;
         turboOn = false;
     }

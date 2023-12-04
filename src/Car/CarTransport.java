@@ -20,7 +20,7 @@ public class CarTransport extends Vehicles_with_platform implements Loadable<Car
     public void storeVehicle(Car vehicle) {
         if (Math.abs(vehicle.getXCoordinate()) - Math.abs(this.getXCoordinate()) <= 10  && Math.abs(vehicle.getYCoordinate()) - Math.abs(this.getYCoordinate()) <= 10 && !(vehicle instanceof CarTransport) && getFixedPlatformPosition()) {
             setIsStored(true);
-            getStorage().add(vehicle);
+            storage.add(vehicle);
         }
     }
     // Implements removeVehicle() since it's obligatory.
@@ -29,9 +29,9 @@ public class CarTransport extends Vehicles_with_platform implements Loadable<Car
     }
     // Performs the actual removal of a vehicle from the platform and places it within reasonable distance of transporter.
     public Car removeLastVehicle(){
-        if (!getStorage().isEmpty() && getFixedPlatformPosition()) {
-            int index = getStorage().size() - 1;
-            Car car = getStorage().get(index); // Get the last car
+        if (!storage.isEmpty() && getFixedPlatformPosition()) {
+            int index = storage.size() - 1;
+            Car car = storage.get(index); // Get the last car
 
             double offsetX = 5 * (index + 1); // Increment offset for each car
             double offsetY = 5 * (index + 1);
@@ -43,7 +43,7 @@ public class CarTransport extends Vehicles_with_platform implements Loadable<Car
             // Lets the car move again
             setIsStored(false);
 
-            return getStorage().remove(index);
+            return storage.remove(index);
         }
         return null;
     }
