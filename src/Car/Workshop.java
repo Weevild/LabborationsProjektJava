@@ -26,8 +26,8 @@ public class Workshop<T extends Car> implements Loadable<T> {
         }
     }
     @Override
-    public List<T> getStorage(){
-        return this.vehicles;
+    public int getAmountOfVehicle() {
+        return vehicles.size();
     }
 
 }

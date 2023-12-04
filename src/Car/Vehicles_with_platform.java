@@ -50,11 +50,8 @@ public abstract class Vehicles_with_platform extends Car implements Movable {
     public void move(){
         if (!cannotMove()){
             super.move();
-            for (Car car : getStorage()) {
-                car.setXCoordinate(this.getXCoordinate());
-                car.setYCoordinate(this.getYCoordinate());
             }
-        }
+
     }
     @Override
     public void turnLeft(){

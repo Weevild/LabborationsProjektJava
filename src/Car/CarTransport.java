@@ -1,10 +1,14 @@
 package Car;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Math.abs;
 
 public class CarTransport extends Vehicles_with_platform implements Loadable<Car>{
+    private List<Car> storage = new ArrayList<>(); // List of stored objects (vehicles), the "platform" if you will.
+
     public CarTransport(){
         super(2,400,0,0,false,"Car.Car Transport");
         color = Color.cyan;
@@ -48,4 +52,19 @@ public class CarTransport extends Vehicles_with_platform implements Loadable<Car
     public boolean cannotMove(){
         return getFixedPlatformPosition();
     }
+
+    @Override
+    public int getAmountOfVehicle() {
+        return storage.size();
+    }
+
+    @Override
+    public void move() {
+        super.move();
+        for (Car car : storage) {
+            car.setXCoordinate(this.getXCoordinate());
+            car.setYCoordinate(this.getYCoordinate());
+        }
+    }
+
 }
