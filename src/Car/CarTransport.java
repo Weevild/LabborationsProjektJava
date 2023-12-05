@@ -18,18 +18,16 @@ public class CarTransport extends VehiclesWithPlatform implements Loadable<Car>{
     @Override
     // Stores an object (vehicle) if the absolute value of the distance between vehicle and transporter is below 10 and that the platform is in "down"-position.
     public void storeVehicle(Car vehicle) {
-        if (Math.abs(vehicle.getXCoordinate()) - Math.abs(this.getXCoordinate()) <= 10  && Math.abs(vehicle.getYCoordinate()) - Math.abs(this.getYCoordinate()) <= 10 && !(vehicle instanceof CarTransport) && FixedPlatformPosition()) {
+        if (Math.abs(vehicle.getXCoordinate()) - Math.abs(this.getXCoordinate()) <= 10  && Math.abs(vehicle.getYCoordinate()) - Math.abs(this.getYCoordinate()) <= 10 && !(vehicle instanceof CarTransport) && getFixedPlatformPosition()) {
             setIsStored(true);
             storage.add(vehicle);
         }
     }
     // Implements removeVehicle() since it's obligatory.
-    @Override
-    public void removeVehicle(Car vehicle){
-    }
+
     // Performs the actual removal of a vehicle from the platform and places it within reasonable distance of transporter.
-    public Car removeLastVehicle(){
-        if (!storage.isEmpty() && FixedPlatformPosition()) {
+    public Car removeVehicle(){
+        if (!storage.isEmpty() && getFixedPlatformPosition()) {
             int index = storage.size() - 1;
             Car car = storage.get(index); // Get the last car
 
@@ -50,7 +48,7 @@ public class CarTransport extends VehiclesWithPlatform implements Loadable<Car>{
     // Checks so that either a fixed platform is in their lowered position
     @Override
     public boolean cannotMove(){
-        return FixedPlatformPosition();
+        return getFixedPlatformPosition();
     }
 
     @Override
