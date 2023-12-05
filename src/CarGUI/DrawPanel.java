@@ -15,7 +15,6 @@ import Car.Car;
 
 public class DrawPanel extends JPanel{
 
-    // Just a single image, TODO: Generalize
     BufferedImage volvoImage;
     BufferedImage saabImage;
     BufferedImage scaniaImage;
@@ -25,7 +24,6 @@ public class DrawPanel extends JPanel{
     Point saabPoint = new Point();
     Point scaniaPoint = new Point();
 
-    // TODO: Make this general for all cars
 
     void moveit(int x, int y, Car car){
         if(car instanceof Volvo240){
@@ -66,7 +64,6 @@ public class DrawPanel extends JPanel{
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
-    // TODO: Change to suit your needs.
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

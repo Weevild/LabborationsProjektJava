@@ -1,16 +1,26 @@
 package Car;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Math.abs;
 
-public class CarTransport extends Vehicles_with_platform implements Loadable<Car>{
+public class CarTransport extends Car implements Loadable<Car>{
     public CarTransport(){
         super(2,400,0,0,false,"Car.Car Transport");
         color = Color.cyan;
         setFixedPlatformPosition(true);
         stopEngine();
     }
+    private List<Car> storage = new ArrayList<>(); // List of stored objects (vehicles), the "platform" if you will.
+    public List<Car> getStorage(){
+        return storage;
+    } // Getter for storage list
+    private boolean FixedPlatformRetractedPosition; // For vehicles with a platform with only up/down positions, checks if platform is "down".
+    public boolean getFixedPlatformPosition(){ return FixedPlatformRetractedPosition; } // Getter for platform position
+    public void setFixedPlatformPosition(boolean position){ this.FixedPlatformRetractedPosition = position; } // Setter for platform position
+
     @Override
     // Stores an object (vehicle) if the absolute value of the distance between vehicle and transporter is below 10 and that the platform is in "down"-position.
     public void storeVehicle(Car vehicle) {
@@ -44,8 +54,27 @@ public class CarTransport extends Vehicles_with_platform implements Loadable<Car
         return null;
     }
     // Checks so that either a fixed platform is in their lowered position
-    @Override
     public boolean cannotMove(){
         return getFixedPlatformPosition();
     }
+
+    @Override
+    public void move(){
+        if (!cannotMove()){
+            super.move();
+            for (Car car : getStorage()) {
+                car.setXCoordinate(this.getXCoordinate());
+                car.setYCoordinate(this.getYCoordinate());
+            }
+        }
+    }
+    @Override
+    public void turnLeft(){
+        if (!cannotMove()) super.turnLeft();
+    }
+    @Override
+    public void turnRight(){
+        if (!cannotMove()) super.turnRight();
+    }
+
 }

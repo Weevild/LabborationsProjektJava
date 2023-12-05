@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
  * It initializes with being center on the screen and attaching it's controller in it's state.
  * It communicates with the Controller by calling methods of it when an action fires of in
  * each of it's components.
- * TODO: Write more actionListeners and wire the rest of the buttons
  **/
 
 public class CarView extends JFrame{
@@ -58,7 +57,6 @@ public class CarView extends JFrame{
     }
 
     // Sets everything in place and fits everything
-    // TODO: Take a good look and make sure you understand how these methods and components work
     private void initComponents(String title) {
 
         this.setTitle(title);
@@ -99,8 +97,8 @@ public class CarView extends JFrame{
         controlPanel.add(gasPanel, 0);
         controlPanel.add(gasButton, 1);
         controlPanel.add(turnLeftButton, 2);
-        controlPanel.add(liftBedButton, 3);;
-        controlPanel.add(turboOnButton, 4);
+        controlPanel.add(turboOnButton, 3);
+        controlPanel.add(liftBedButton, 4);
         controlPanel.add(brakePanel, 5);
         controlPanel.add(brakeButton, 6);
         controlPanel.add(turnRightButton, 7);
