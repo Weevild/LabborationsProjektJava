@@ -10,9 +10,9 @@ public class TestCarTransport {
 
     @Test
     public void TryToStoreTransporterOntoItself(){
-        int initialSize = transporter.getStorage().size();
+        int initialSize = transporter.getAmountOfVehicle();
         transporter.storeVehicle(transporter);
-        int finalSize = transporter.getStorage().size();
+        int finalSize = transporter.getAmountOfVehicle();
 
         assertEquals("Storing transporter onto itself should not increase the size of storage", initialSize, finalSize);
     }
