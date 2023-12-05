@@ -30,13 +30,13 @@ public class TestWorkshopSaab {
     @Test
     public void NoVehiclesAvailableToRemove(){
         Workshop.storeVehicle(Saab);
-        assertEquals("The workshop should have 1 vehicle", 1, Workshop.getAmountOfVehicle(), 5);
+        assertEquals("The workshop should have 1 vehicle", 1, Workshop.getStorage().size());
 
         Workshop.removeVehicle(Saab);
-        assertEquals("The workshop should have 0 vehicles", 0, Workshop.getAmountOfVehicle());
+        assertEquals("The workshop should have 0 vehicles", 0, Workshop.getStorage().size());
 
         Workshop.removeVehicle(Saab);
-        assertEquals("The workshop should still have 0 vehicles", 0, Workshop.getAmountOfVehicle());
+        assertEquals("The workshop should still have 0 vehicles", 0, Workshop.getStorage().size());
     }
 
 }

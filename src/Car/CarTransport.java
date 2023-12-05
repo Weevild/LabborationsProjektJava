@@ -30,7 +30,7 @@ public class CarTransport extends Car implements Loadable<Car>{
         }
     }
     // Implements removeVehicle() since it's obligatory.
-    @Override
+
     public void removeVehicle(Car vehicle){
     }
     // Performs the actual removal of a vehicle from the platform and places it within reasonable distance of transporter.
