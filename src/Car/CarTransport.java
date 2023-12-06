@@ -9,8 +9,8 @@ import static java.lang.Math.abs;
 public class CarTransport extends FixedPlatform implements Loadable<Car>{
     private List<Car> storage = new ArrayList<>(); // List of stored objects (vehicles), the "platform" if you will.
 
-    public CarTransport(){
-        super(2,400,0,0,false,"Car.Car Transport");
+    public CarTransport(double x, double y){
+        super(2,400,x,y,false,"Car.Car Transport");
         color = Color.cyan;
         setFixedPlatformPosition(true);
         stopEngine();

@@ -5,8 +5,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestCarTransport {
-    public CarTransport transporter = new CarTransport();
-    public Saab95 saab = new Saab95();
+    public CarTransport transporter = new CarTransport(0,0);
+    public Saab95 saab = new Saab95(0,0);
 
     @Test
     public void TryToStoreTransporterOntoItself(){

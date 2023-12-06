@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class TestVolvo240 {
 
-    public Volvo240 Volvo = new Volvo240();
+    public Volvo240 Volvo = new Volvo240(0,0);
 
 
     @Test

@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestWorkshopSaab {
-    Saab95 Saab = new Saab95();
+    Saab95 Saab = new Saab95(0,0);
 
     public Workshop<Saab95> Workshop = new Workshop<Saab95>();
 

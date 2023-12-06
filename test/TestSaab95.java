@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 public class TestSaab95 {
 
-    public Saab95 Saab = new Saab95();
+    public Saab95 Saab = new Saab95(0,0);
 
     @Test
     public void nrOfDoors() {

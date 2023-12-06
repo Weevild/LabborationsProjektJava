@@ -154,8 +154,6 @@ public class CarController {
                 car.startEngine();
             } else if (0 > car.getYCoordinate() || CarView.getYBoundary() - 300 < car.getYCoordinate()) {
                 // Adjust car's Y position to within boundaries
-                //System.out.println(car.getModelName());
-                //System.out.println(car.getYCoordinate());
                 double newY = Math.max(0, Math.min(car.getYCoordinate(), CarView.getYBoundary() - 300));
                 car.setYCoordinate(newY);
 

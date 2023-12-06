@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class TestScania {
 
-    public Scania Scania = new Scania();
+    public Scania Scania = new Scania(0,0);
 
     @Test
     public void IntitialPlatformAngle(){
