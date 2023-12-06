@@ -28,6 +28,7 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
+
     ArrayList<Car> cars = new ArrayList<>();
 
     //methods:
@@ -65,7 +66,7 @@ public class CarController {
     }
 
     // Calls the gas method for each car once
-    void gas(int amount) {
+    public void gas(int amount) {
         double gas = ((double) amount) / 100;
         for (Car car : cars) {
             car.gas(gas);
@@ -73,32 +74,32 @@ public class CarController {
     }
 
     // Calls the brake method for each car once
-    void brake(int amount) {
+    public void brake(int amount) {
         double brake = ((double) amount) / 100;
         for (Car car : cars) {
             car.brake(brake);
         }
     }
 
-    void startEngine() {
+    public void startEngine() {
         for (Car car : cars) {
             car.startEngine();
         }
     }
 
-    void stopEngine() {
+    public void stopEngine() {
         for (Car car : cars) {
             car.stopEngine();
         }
     }
 
-    void turnLeft() {
+    public void turnLeft() {
         for (Car car : cars) {
             car.turnLeft();
         }
     }
 
-    void turnRight() {
+    public void turnRight() {
         for (Car car : cars) {
             car.turnRight();
         }
@@ -144,25 +145,25 @@ public class CarController {
                 double newX = Math.max(0, Math.min(car.getXCoordinate(), CarView.getXBoundary() - 100));
                 car.setXCoordinate(newX);
 
-                stopEngine();
+                car.stopEngine();
                 if (car.getDirection() == car.getDirectionIndex(Car.Direction.WEST)) {
                     car.setDirection(Car.Direction.EAST);
                 } else if (car.getDirection() == car.getDirectionIndex(Car.Direction.EAST)) {
                     car.setDirection(Car.Direction.WEST);
                 }
-                startEngine();
+                car.startEngine();
             } else if (0 > car.getYCoordinate() || CarView.getYBoundary() - 300 < car.getYCoordinate()) {
                 // Adjust car's Y position to within boundaries
                 double newY = Math.max(0, Math.min(car.getYCoordinate(), CarView.getYBoundary() - 300));
                 car.setYCoordinate(newY);
 
-                stopEngine();
+                car.stopEngine();
                 if (car.getDirection() == car.getDirectionIndex(Car.Direction.NORTH)) {
                     car.setDirection(Car.Direction.SOUTH);
                 } else if (car.getDirection() == car.getDirectionIndex(Car.Direction.SOUTH)) {
                     car.setDirection(Car.Direction.NORTH);
                 }
-                startEngine();
+                car.startEngine();
             }
         }
     }

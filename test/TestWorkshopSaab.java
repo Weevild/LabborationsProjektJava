@@ -12,7 +12,7 @@ public class TestWorkshopSaab {
     /*
     @Test
     public void TryToStoreWrongModelInWorkshop(){
-        WorkshopSaab.storeVehicle(Volvo);
+        Workshop.storeVehicle(Volvo);
         // Gives compile time error
     }
     */

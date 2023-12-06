@@ -15,8 +15,8 @@ import java.awt.event.ActionListener;
  **/
 
 public class CarView extends JFrame{
-    private static final int X = 1000;
-    private static final int Y = 1000;
+    private static final int X = 1500;
+    private static final int Y = 1500;
 
     public static int getXBoundary() { return X; }
     public static int getYBoundary() { return Y; }
