@@ -20,17 +20,13 @@ public class Workshop<T extends Car> implements Loadable<T> {
     }
     @Override
     public T removeVehicle() {
-        if(vehicles.size() < vehicleLimit){
-            this.vehicles.remove(vehicle);      //Fixa denna
+        int len = vehicles.size();
+        if(len > 0){
+            return this.vehicles.remove(0);
         }
+        return null;
     }
 
-    // Overloading
-    public void removeVehicle(T vehicle) {
-        if(vehicles.size() < vehicleLimit){
-            this.vehicles.remove(vehicle);
-        }
-    }
     @Override
     public int getAmountOfVehicle() {
         return vehicles.size();

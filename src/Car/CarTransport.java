@@ -6,7 +6,7 @@ import java.util.List;
 
 import static java.lang.Math.abs;
 
-public class CarTransport extends VehiclesWithPlatform implements Loadable<Car>{
+public class CarTransport extends FixedPlatform implements Loadable<Car>{
     private List<Car> storage = new ArrayList<>(); // List of stored objects (vehicles), the "platform" if you will.
 
     public CarTransport(){

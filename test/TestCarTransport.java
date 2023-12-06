@@ -29,7 +29,7 @@ public class TestCarTransport {
     @Test
     public void RemovingVehicleShouldPlaceItInProximityToTransporter(){
         transporter.storeVehicle(saab);
-        transporter.removeLastVehicle();
+        transporter.removeVehicle();
         assertEquals("Stored vehicle should be placed within reasonable distance to the transporter", 5.0, saab.getYCoordinate(), 0.001);
     }
     @Test
