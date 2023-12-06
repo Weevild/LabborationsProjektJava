@@ -12,7 +12,7 @@ public class TestCarTransport {
     public void TryToStoreTransporterOntoItself(){
         int initialSize = transporter.getAmountOfVehicle();
         transporter.storeVehicle(transporter);
-        int finalSize = transporter.getStorage().size();
+        int finalSize = transporter.getAmountOfVehicle();
 
         assertEquals("Storing transporter onto itself should not increase the size of storage", initialSize, finalSize);
     }
@@ -29,7 +29,7 @@ public class TestCarTransport {
     @Test
     public void RemovingVehicleShouldPlaceItInProximityToTransporter(){
         transporter.storeVehicle(saab);
-        transporter.removeVehicle();
+        transporter.removeLastVehicle();
         assertEquals("Stored vehicle should be placed within reasonable distance to the transporter", 5.0, saab.getYCoordinate(), 0.001);
     }
     @Test
