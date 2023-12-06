@@ -36,7 +36,7 @@ public class CarController {
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
-
+        // Sets the start values for each object vehicle and ands them to the cars list
         cc.cars.add(new Volvo240(0,0));
         cc.cars.add(new Saab95(0,100));
         cc.cars.add(new Scania(0,200));
