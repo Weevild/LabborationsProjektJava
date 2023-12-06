@@ -9,11 +9,4 @@ public class Scania extends DegreePlatform {
         stopEngine();
         setPlatformPosition(70);
     }
-    /*
-    @Override
-    public boolean cannotMove(){
-        return getPlatformPosition() < getMaxAngle();
-    }
-
-     */
 }
