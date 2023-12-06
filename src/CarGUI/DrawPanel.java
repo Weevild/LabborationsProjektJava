@@ -31,10 +31,10 @@ public class DrawPanel extends JPanel{
             volvoPoint.y = y;
         } else if(car instanceof Saab95){
             saabPoint.x = x;
-            saabPoint.y = y + 100;
+            saabPoint.y = y;
         } else if(car instanceof Scania){
             scaniaPoint.x = x;
-            scaniaPoint.y = y + 200;
+            scaniaPoint.y = y;
         }
     }
 

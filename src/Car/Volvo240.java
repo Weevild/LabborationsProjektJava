@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class Volvo240 extends Car{
     private final static double trimFactor = 1.25;
-    public Volvo240(){
-        super(4,100,0,0, false,"Car.Volvo240");
+    public Volvo240(double x, double y){
+        super(4,100,x,y, false,"Car.Volvo240");
         color = Color.black;
     }
     @Override

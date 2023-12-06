@@ -37,9 +37,9 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240());
-        cc.cars.add(new Saab95());
-        cc.cars.add(new Scania());
+        cc.cars.add(new Volvo240(0,0));
+        cc.cars.add(new Saab95(0,100));
+        cc.cars.add(new Scania(0,200));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -154,6 +154,8 @@ public class CarController {
                 car.startEngine();
             } else if (0 > car.getYCoordinate() || CarView.getYBoundary() - 300 < car.getYCoordinate()) {
                 // Adjust car's Y position to within boundaries
+                //System.out.println(car.getModelName());
+                //System.out.println(car.getYCoordinate());
                 double newY = Math.max(0, Math.min(car.getYCoordinate(), CarView.getYBoundary() - 300));
                 car.setYCoordinate(newY);
 
