@@ -18,13 +18,12 @@ public class Workshop<T extends Car> implements Loadable<T> {
             vehicles.add(vehicle);
         }
     }
-    @Override
-    public T removeVehicle() {
+
+    public void removeVehicle(T vehicle) {
         int len = vehicles.size();
         if(len > 0){
-            return this.vehicles.remove(0);
+            this.vehicles.remove(0);
         }
-        return null;
     }
 
     @Override

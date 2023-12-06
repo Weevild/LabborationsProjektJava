@@ -10,7 +10,7 @@ public class TestCarTransport {
 
     @Test
     public void TryToStoreTransporterOntoItself(){
-        int initialSize = transporter.getStorage().size();
+        int initialSize = transporter.getAmountOfVehicle();
         transporter.storeVehicle(transporter);
         int finalSize = transporter.getStorage().size();
 

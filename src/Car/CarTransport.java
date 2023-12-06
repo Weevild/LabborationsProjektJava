@@ -23,10 +23,8 @@ public class CarTransport extends FixedPlatform implements Loadable<Car>{
             storage.add(vehicle);
         }
     }
-    // Implements removeVehicle() since it's obligatory.
-
-    // Performs the actual removal of a vehicle from the platform and places it within reasonable distance of transporter.
-    public Car removeVehicle(){
+    // Performs the removal of a vehicle from the platform and places it within reasonable distance of transporter.
+    public Car removeLastVehicle(){
         if (!storage.isEmpty() && getFixedPlatformPosition()) {
             int index = storage.size() - 1;
             Car car = storage.get(index); // Get the last car
