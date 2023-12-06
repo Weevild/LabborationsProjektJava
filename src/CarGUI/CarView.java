@@ -102,8 +102,8 @@ public class CarView extends JFrame{
         controlPanel.add(brakePanel, 5);
         controlPanel.add(brakeButton, 6);
         controlPanel.add(turnRightButton, 7);
-        controlPanel.add(lowerBedButton, 8);
-        controlPanel.add(turboOffButton, 9);
+        controlPanel.add(turboOffButton, 8);
+        controlPanel.add(lowerBedButton, 9);
 
         controlPanel.setPreferredSize(new Dimension((X/2)+100, 200));
         this.add(controlPanel);
@@ -122,7 +122,6 @@ public class CarView extends JFrame{
         this.add(stopButton);
 
         // This actionListener is for the gas button only
-        // TODO: Create more for each component as necessary
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

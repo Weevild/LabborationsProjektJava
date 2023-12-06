@@ -1,9 +1,6 @@
 package CarGUI;
 
-import Car.Car;
-import Car.Volvo240;
-import Car.Saab95;
-import Car.Scania;
+import Car.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

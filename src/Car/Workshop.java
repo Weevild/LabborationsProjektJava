@@ -11,7 +11,7 @@ public class Workshop<T extends Car> implements Loadable<T> {
     }
     public int getVehicleLimit() {
         return vehicleLimit;
-    }   //getter for
+    }
 
     @Override
     // Overloading

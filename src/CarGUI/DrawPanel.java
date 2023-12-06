@@ -6,10 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import Car.Volvo240;
-import Car.Saab95;
-import Car.Scania;
-import Car.Car;
+import Car.*;
 
 // This panel represent the animated part of the view with the car images.
 
