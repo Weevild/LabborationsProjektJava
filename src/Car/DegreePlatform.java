@@ -1,6 +1,6 @@
 package Car;
 
-public class DegreePlatform extends Car implements Movable{
+public class DegreePlatform extends Car{
 
     public DegreePlatform(int nr, int power, double x, double y, boolean stored, String model) {
         super(nr, power, x, y, stored, model);

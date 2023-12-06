@@ -1,6 +1,6 @@
 package Car;
 
-public class FixedPlatform extends Car implements Movable{
+public class FixedPlatform extends Car{
     public FixedPlatform(int nr, int power, double x, double y, boolean stored, String model) {
         super(nr, power, x, y, stored, model);
     }
