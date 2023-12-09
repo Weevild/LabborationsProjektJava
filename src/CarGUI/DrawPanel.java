@@ -2,7 +2,6 @@ package CarGUI;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -22,14 +21,14 @@ public class DrawPanel extends JPanel{
     Point scaniaPoint = new Point();
 
 
-    void moveit(int x, int y, Car car){
-        if(car instanceof Volvo240){
+    void moveit(int x, int y, Vehicle vehicle){
+        if(vehicle instanceof Volvo240){
             volvoPoint.x = x;
             volvoPoint.y = y;
-        } else if(car instanceof Saab95){
+        } else if(vehicle instanceof Saab95){
             saabPoint.x = x;
             saabPoint.y = y;
-        } else if(car instanceof Scania){
+        } else if(vehicle instanceof Scania){
             scaniaPoint.x = x;
             scaniaPoint.y = y;
         }

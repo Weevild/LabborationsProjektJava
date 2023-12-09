@@ -4,8 +4,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -21,9 +21,23 @@ public class CarView extends JFrame{
     public static int getXBoundary() { return X; }
     public static int getYBoundary() { return Y; }
 
-    // The controller member
-    CarController carC;
+    private List<CarViewObserver> observers = new ArrayList<>();
 
+    public void addObserver(CarViewObserver observer) {
+        observers.add(observer);
+    }
+    private void setupButtonListeners() {
+        gasButton.addActionListener(e -> notifyGasButtonPress(gasAmount));
+        brakeButton.addActionListener(e -> notifyBrakeButtonPress(brakeAmount));
+        startButton.addActionListener(e -> notifyStartEngineButtonPressed());
+        stopButton.addActionListener(e -> notifyStopEngineButtonPressed());
+        turnLeftButton.addActionListener(e -> notifyTurnLeftButtonPressed());
+        turnRightButton.addActionListener(e -> notifyTurnRightButtonPressed());
+        turboOnButton.addActionListener(e -> notifySetTurboOnButtonPressed());
+        turboOffButton.addActionListener(e -> notifySetTurboOffButtonPressed());
+        liftBedButton.addActionListener(e -> notifyPlatformUpButtonPressed());
+        lowerBedButton.addActionListener(e -> notifyPlatformDownButtonPressed());
+    }
     DrawPanel drawPanel = new DrawPanel(X, Y-240);
 
     JPanel controlPanel = new JPanel();
@@ -51,16 +65,16 @@ public class CarView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public CarView(String framename, CarController cc){
-        this.carC = cc;
+    public CarView(String framename){
         initComponents(framename);
+        setupButtonListeners();
     }
 
     // Sets everything in place and fits everything
     private void initComponents(String title) {
 
         this.setTitle(title);
-        this.setPreferredSize(new Dimension(X,Y));
+        this.setPreferredSize(new Dimension(X, Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
         this.add(drawPanel);
@@ -73,13 +87,13 @@ public class CarView extends JFrame{
         gasSpinner = new JSpinner(spinnerModel);
         gasSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                gasAmount = (int) ((JSpinner)e.getSource()).getValue();
+                gasAmount = (int) ((JSpinner) e.getSource()).getValue();
             }
         });
 
         brakeSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                brakeAmount = (int) ((JSpinner)e.getSource()).getValue();
+                brakeAmount = (int) ((JSpinner) e.getSource()).getValue();
             }
         });
 
@@ -93,7 +107,7 @@ public class CarView extends JFrame{
 
         this.add(controlPanel);
 
-        controlPanel.setLayout(new GridLayout(2,5));
+        controlPanel.setLayout(new GridLayout(2, 5));
         controlPanel.add(gasPanel, 0);
         controlPanel.add(gasButton, 1);
         controlPanel.add(turnLeftButton, 2);
@@ -105,86 +119,21 @@ public class CarView extends JFrame{
         controlPanel.add(turboOffButton, 8);
         controlPanel.add(lowerBedButton, 9);
 
-        controlPanel.setPreferredSize(new Dimension((X/2)+100, 200));
+        controlPanel.setPreferredSize(new Dimension((X / 2) + 100, 200));
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
 
 
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
-        startButton.setPreferredSize(new Dimension(X/5-15,200));
+        startButton.setPreferredSize(new Dimension(X / 5 - 15, 200));
         this.add(startButton);
 
 
         stopButton.setBackground(Color.red);
         stopButton.setForeground(Color.black);
-        stopButton.setPreferredSize(new Dimension(X/5-15,200));
+        stopButton.setPreferredSize(new Dimension(X / 5 - 15, 200));
         this.add(stopButton);
-
-        // This actionListener is for the gas button only
-        gasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.gas(gasAmount);
-            }
-        });
-
-
-        brakeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.brake(brakeAmount);
-            }
-        });
-
-        stopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.stopEngine();
-            }
-        });
-
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.startEngine();
-            }
-        });
-
-        turnLeftButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.turnLeft();
-            }
-        });
-
-        turnRightButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.turnRight();
-            }
-        });
-
-        turboOnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { carC.setTurboOn(); }
-        });
-
-        turboOffButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { carC.setTurboOff(); }
-        });
-
-        liftBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { carC.platformUp(70); }
-        });
-
-        lowerBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { carC.platformDown(70); }
-        });
-
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
@@ -197,5 +146,65 @@ public class CarView extends JFrame{
         this.setVisible(true);
         // Make sure the frame exits when "x" is pressed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void notifyGasButtonPress(int gasAmount) {
+        for (CarViewObserver observer : observers) {
+            observer.onGasButtonPressed(gasAmount);
+        }
+    }
+
+    private void notifyBrakeButtonPress(int brakeAmount) {
+        for (CarViewObserver observer : observers) {
+            observer.onBreakButtonPressed(brakeAmount);
+        }
+    }
+
+    private void notifyStartEngineButtonPressed() {
+        for (CarViewObserver observer : observers) {
+            observer.onStartEngineButtonPressed();
+        }
+    }
+
+    private void notifyStopEngineButtonPressed() {
+        for (CarViewObserver observer : observers) {
+            observer.onStopEngineButtonPressed();
+        }
+    }
+
+    private void notifyTurnLeftButtonPressed() {
+        for (CarViewObserver observer : observers) {
+            observer.onTurnLeftButtonPressed();
+        }
+    }
+
+    private void notifyTurnRightButtonPressed() {
+        for (CarViewObserver observer : observers) {
+            observer.onTurnRightButtonPressed();
+        }
+    }
+
+    private void notifySetTurboOnButtonPressed() {
+        for (CarViewObserver observer : observers) {
+            observer.onSetTurboOnButtonPressed();
+        }
+    }
+
+    private void notifySetTurboOffButtonPressed() {
+        for (CarViewObserver observer : observers) {
+            observer.onSetTurboOffButtonPressed();
+        }
+    }
+
+    private void notifyPlatformUpButtonPressed() {
+        for (CarViewObserver observer : observers) {
+            observer.onPlatformUpButtonPressed(70);
+        }
+    }
+
+    private void notifyPlatformDownButtonPressed() {
+        for (CarViewObserver observer : observers) {
+            observer.onPlatformDownButtonPressed(70);
+        }
     }
 }

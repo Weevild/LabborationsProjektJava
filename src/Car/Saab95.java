@@ -1,7 +1,7 @@
 package Car;
 
 import java.awt.*;
-public class Saab95 extends Car {
+public class Saab95 extends Vehicle implements isCar {
     private boolean turboOn;
     public Saab95(double x, double y){
         super(0,125,x,y, false,"Car.Saab95");

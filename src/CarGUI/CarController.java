@@ -9,52 +9,35 @@ import java.util.ArrayList;
 
 /*
 * This class represents the Controller part in the MVC pattern.
-* Its responsibilities are to listen to the View and responds in an appropriate manner by
+* Its responsibilities are to listen to the View via an observer and responds in an appropriate manner by
 * modifying the model state and the updating the view.
  */
 
-public class CarController {
+public class CarController implements CarViewObserver {
     // member fields:
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 5;
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
-    private Timer timer = new Timer(delay, new TimerListener());
-
+    Timer timer = new Timer(delay, new TimerListener());
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-
-    ArrayList<Car> cars = new ArrayList<>();
-
+    ArrayList<Vehicle> vehicles = new ArrayList<>();
     //methods:
 
-    public static void main(String[] args) {
-        // Instance of this class
-        CarController cc = new CarController();
-        // Sets the start values for each object vehicle and ands them to the cars list
-        cc.cars.add(new Volvo240(0,0));
-        cc.cars.add(new Saab95(0,100));
-        cc.cars.add(new Scania(0,200));
-
-        // Start a new view and send a reference of self
-        cc.frame = new CarView("CarSim 1.0", cc);
-
-        // Start the timer
-        cc.timer.start();
-    }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.
      * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Car car : cars) {
-                car.move();
-                int x = (int) Math.round(car.getXCoordinate());
-                int y = (int) Math.round(car.getYCoordinate());
-                frame.drawPanel.moveit(x, y, car);
+            for (Vehicle vehicle : vehicles) {
+                vehicle.move();
+                int x = (int) Math.round(vehicle.getXCoordinate());
+                int y = (int) Math.round(vehicle.getYCoordinate());
+                frame.drawPanel.moveit(x, y, vehicle);
                 frame.drawPanel.repaint();
             }
             carOutOfBounds();
@@ -63,104 +46,104 @@ public class CarController {
     }
 
     // Calls the gas method for each car once
-    public void gas(int amount) {
+    public void onGasButtonPressed(int amount) {
         double gas = ((double) amount) / 100;
-        for (Car car : cars) {
-            car.gas(gas);
+        for (Vehicle vehicle : vehicles) {
+            vehicle.gas(gas);
         }
     }
 
     // Calls the brake method for each car once
-    public void brake(int amount) {
+    public void onBreakButtonPressed(int amount) {
         double brake = ((double) amount) / 100;
-        for (Car car : cars) {
-            car.brake(brake);
+        for (Vehicle vehicle : vehicles) {
+            vehicle.brake(brake);
         }
     }
 
-    public void startEngine() {
-        for (Car car : cars) {
-            car.startEngine();
+    public void onStartEngineButtonPressed() {
+        for (Vehicle vehicle : vehicles) {
+            vehicle.startEngine();
         }
     }
 
-    public void stopEngine() {
-        for (Car car : cars) {
-            car.stopEngine();
+    public void onStopEngineButtonPressed() {
+        for (Vehicle vehicle : vehicles) {
+            vehicle.stopEngine();
         }
     }
 
-    public void turnLeft() {
-        for (Car car : cars) {
-            car.turnLeft();
+    public void onTurnLeftButtonPressed() {
+        for (Vehicle vehicle : vehicles) {
+            vehicle.turnLeft();
         }
     }
 
-    public void turnRight() {
-        for (Car car : cars) {
-            car.turnRight();
+    public void onTurnRightButtonPressed() {
+        for (Vehicle vehicle : vehicles) {
+            vehicle.turnRight();
         }
     }
 
-    public void setTurboOn() {
-        for (Car car : cars) {
-            if (car instanceof Saab95) {
-                ((Saab95) car).setTurboOn();
+    public void onSetTurboOnButtonPressed() {
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle instanceof Saab95) {
+                ((Saab95) vehicle).setTurboOn();
             }
         }
     }
 
-    public void setTurboOff() {
-        for (Car car : cars) {
-            if (car instanceof Saab95) {
-                ((Saab95) car).setTurboOff();
+    public void onSetTurboOffButtonPressed() {
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle instanceof Saab95) {
+                ((Saab95) vehicle).setTurboOff();
             }
         }
     }
 
-    public void platformUp(double position) {
-        for (Car car : cars) {
-            if (car instanceof Scania) {
-                ((Scania) car).platformUp(position);
+    public void onPlatformUpButtonPressed(double position) {
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle instanceof Scania) {
+                ((Scania) vehicle).platformUp(position);
             }
         }
     }
 
-    public void platformDown(double position) {
-        for (Car car : cars) {
-            if (car instanceof Scania) {
-                ((Scania) car).platformDown(position);
+    public void onPlatformDownButtonPressed(double position) {
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle instanceof Scania) {
+                ((Scania) vehicle).platformDown(position);
             }
         }
     }
 
 
     public void carOutOfBounds() {
-        for (Car car : cars) {
-            if (0 > car.getXCoordinate() || CarView.getXBoundary() - 100 < car.getXCoordinate()) {
+        for (Vehicle vehicle : vehicles) {
+            if (0 > vehicle.getXCoordinate() || CarView.getXBoundary() - 100 < vehicle.getXCoordinate()) {
                 // Adjust car's X position to within boundaries
-                double newX = Math.max(0, Math.min(car.getXCoordinate(), CarView.getXBoundary() - 100));
-                car.setXCoordinate(newX);
+                double newX = Math.max(0, Math.min(vehicle.getXCoordinate(), CarView.getXBoundary() - 100));
+                vehicle.setXCoordinate(newX);
 
-                car.stopEngine();
-                if (car.getDirection() == car.getDirectionIndex(Car.Direction.WEST)) {
-                    car.setDirection(Car.Direction.EAST);
-                } else if (car.getDirection() == car.getDirectionIndex(Car.Direction.EAST)) {
-                    car.setDirection(Car.Direction.WEST);
+                vehicle.stopEngine();
+                if (vehicle.getDirection() == vehicle.getDirectionIndex(Vehicle.Direction.WEST)) {
+                    vehicle.setDirection(Vehicle.Direction.EAST);
+                } else if (vehicle.getDirection() == vehicle.getDirectionIndex(Vehicle.Direction.EAST)) {
+                    vehicle.setDirection(Vehicle.Direction.WEST);
                 }
-                car.startEngine();
-            } else if (0 > car.getYCoordinate() || CarView.getYBoundary() - 300 < car.getYCoordinate()) {
+                vehicle.startEngine();
+            } else if (0 > vehicle.getYCoordinate() || CarView.getYBoundary() - 300 < vehicle.getYCoordinate()) {
                 // Adjust car's Y position to within boundaries
-                double newY = Math.max(0, Math.min(car.getYCoordinate(), CarView.getYBoundary() - 300));
-                car.setYCoordinate(newY);
+                double newY = Math.max(0, Math.min(vehicle.getYCoordinate(), CarView.getYBoundary() - 300));
+                vehicle.setYCoordinate(newY);
 
-                car.stopEngine();
-                if (car.getDirection() == car.getDirectionIndex(Car.Direction.NORTH)) {
-                    car.setDirection(Car.Direction.SOUTH);
-                } else if (car.getDirection() == car.getDirectionIndex(Car.Direction.SOUTH)) {
-                    car.setDirection(Car.Direction.NORTH);
+                vehicle.stopEngine();
+                if (vehicle.getDirection() == vehicle.getDirectionIndex(Vehicle.Direction.NORTH)) {
+                    vehicle.setDirection(Vehicle.Direction.SOUTH);
+                } else if (vehicle.getDirection() == vehicle.getDirectionIndex(Vehicle.Direction.SOUTH)) {
+                    vehicle.setDirection(Vehicle.Direction.NORTH);
                 }
-                car.startEngine();
+                vehicle.startEngine();
             }
         }
     }

@@ -1,16 +1,16 @@
 package Car;
 
 import java.awt.*;
-public abstract class Car implements Movable {
+public abstract class Vehicle implements Movable {
 
-    public Car(int nr, int power, double x, double y, boolean stored, String model){
+    public Vehicle(int nr, int power, double x, double y, boolean stored, String model){
         this.direction = getDirectionIndex(Direction.SOUTH);
         this.xCoordinate = x;
         this.yCoordinate = y;
         this.nrDoors = nr;
         this.isStored = stored;
+        this.modelName = model;
         enginePower = power;
-        modelName = model;
         stopEngine();
     }
     public enum Direction{
