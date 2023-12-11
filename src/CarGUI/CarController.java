@@ -63,7 +63,7 @@ public class CarController implements CarViewObserver {
     }
 
     public Vehicle createSpecifiedVehicle(String name) {
-        String lowerCaseModelName = name.toLowerCase();
+        String lowerCaseModelName = name.trim().toLowerCase();
         switch(lowerCaseModelName) {
             case "volvo240":
                 Volvo240Factory volvoFactory = new Volvo240Factory();
@@ -160,7 +160,7 @@ public class CarController implements CarViewObserver {
     public void onAddCarButtonPressed(String name){
         Vehicle newVehicle;
         if(vehicles.size() < 10) {
-            if (name.isEmpty()) {
+            if ("random car".equalsIgnoreCase(name)) {
                 newVehicle = createRandomVehicle();
             } else {
                 newVehicle = createSpecifiedVehicle(name);
@@ -168,7 +168,10 @@ public class CarController implements CarViewObserver {
 
             if (newVehicle != null) {
                 vehicles.add(newVehicle);
-                frame.drawPanel.moveit(0, 0, newVehicle); // Assuming new vehicles start at (0,0)
+                int startX = (int) Math.round(newVehicle.getXCoordinate());
+                int startY = (int) Math.round(newVehicle.getYCoordinate());
+
+                frame.drawPanel.moveit(startX, startY, newVehicle);
                 frame.drawPanel.repaint(); // Refresh the view
             }
         }

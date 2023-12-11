@@ -6,6 +6,8 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.SpinnerListModel;
+
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -54,6 +56,11 @@ public class CarView extends JFrame{
     int brakeAmount = 0;
     JLabel brakeLabel = new JLabel("Amount of brake");
 
+    private void setupCarSpinner() {
+        String[] carNames = {"Random car","Volvo240", "Saab95", "Scania"};
+        SpinnerListModel carModel = new SpinnerListModel(carNames);
+        addCarSpinner.setModel(carModel);
+    }
     JPanel addCarPanel = new JPanel();
     JSpinner addCarSpinner = new JSpinner();
     String addCarName = "";
@@ -77,6 +84,7 @@ public class CarView extends JFrame{
     public CarView(String framename){
         initComponents(framename);
         setupButtonListeners();
+        setupCarSpinner();
     }
 
     // Sets everything in place and fits everything
@@ -106,11 +114,10 @@ public class CarView extends JFrame{
             }
         });
 
-        addCarSpinner.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) { addCarName = (String) ((JSpinner) e.getSource()).getValue(); }
+        addCarButton.addActionListener(e -> {
+            String selectedCarName = addCarSpinner.getValue().toString();
+            notifyAddCarButtonPressed(selectedCarName);
         });
-
 
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
