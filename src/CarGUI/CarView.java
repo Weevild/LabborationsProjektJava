@@ -37,6 +37,8 @@ public class CarView extends JFrame{
         turboOffButton.addActionListener(e -> notifySetTurboOffButtonPressed());
         liftBedButton.addActionListener(e -> notifyPlatformUpButtonPressed());
         lowerBedButton.addActionListener(e -> notifyPlatformDownButtonPressed());
+        addCarButton.addActionListener(e -> notifyAddCarButtonPressed(addCarName));
+        removeCarButton.addActionListener(e -> notifyRemoveCarButtonPressed());
     }
     DrawPanel drawPanel = new DrawPanel(X, Y-240);
 
@@ -52,6 +54,11 @@ public class CarView extends JFrame{
     int brakeAmount = 0;
     JLabel brakeLabel = new JLabel("Amount of brake");
 
+    JPanel addCarPanel = new JPanel();
+    JSpinner addCarSpinner = new JSpinner();
+    String addCarName = "";
+    JLabel addCarLabel = new JLabel("New car's name");
+
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
 
@@ -63,6 +70,8 @@ public class CarView extends JFrame{
     JButton lowerBedButton = new JButton("Scania Lower Bed");
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
+    JButton addCarButton = new JButton("Add car");
+    JButton removeCarButton = new JButton("Remove car");
 
     // Constructor
     public CarView(String framename){
@@ -97,6 +106,12 @@ public class CarView extends JFrame{
             }
         });
 
+        addCarSpinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) { addCarName = (String) ((JSpinner) e.getSource()).getValue(); }
+        });
+
+
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
@@ -105,9 +120,13 @@ public class CarView extends JFrame{
         brakePanel.add(brakeLabel, BorderLayout.PAGE_START);
         brakePanel.add(brakeSpinner, BorderLayout.PAGE_END);
 
+        addCarPanel.setLayout(new BorderLayout());
+        addCarPanel.add(addCarLabel, BorderLayout.PAGE_START);
+        addCarPanel.add(addCarSpinner, BorderLayout.PAGE_END);
+
         this.add(controlPanel);
 
-        controlPanel.setLayout(new GridLayout(2, 5));
+        controlPanel.setLayout(new GridLayout(3, 5));
         controlPanel.add(gasPanel, 0);
         controlPanel.add(gasButton, 1);
         controlPanel.add(turnLeftButton, 2);
@@ -118,6 +137,9 @@ public class CarView extends JFrame{
         controlPanel.add(turnRightButton, 7);
         controlPanel.add(turboOffButton, 8);
         controlPanel.add(lowerBedButton, 9);
+        controlPanel.add(addCarPanel, 10);
+        controlPanel.add(addCarButton, 11);
+        controlPanel.add(removeCarButton, 12);
 
         controlPanel.setPreferredSize(new Dimension((X / 2) + 100, 200));
         this.add(controlPanel);
@@ -205,6 +227,18 @@ public class CarView extends JFrame{
     private void notifyPlatformDownButtonPressed() {
         for (CarViewObserver observer : observers) {
             observer.onPlatformDownButtonPressed(70);
+        }
+    }
+
+    private void notifyAddCarButtonPressed(String name) {
+        for (CarViewObserver observer : observers) {
+            observer.onAddCarButtonPressed(name);
+        }
+    }
+
+    private void notifyRemoveCarButtonPressed() {
+        for (CarViewObserver observer : observers) {
+            observer.onRemoveButtonPressed();
         }
     }
 }

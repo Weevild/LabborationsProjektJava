@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -27,7 +28,6 @@ public class CarController implements CarViewObserver {
     ArrayList<Vehicle> vehicles = new ArrayList<>();
     //methods:
 
-
     /* Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.
      * */
@@ -44,6 +44,46 @@ public class CarController implements CarViewObserver {
         }
 
     }
+    public Vehicle createRandomVehicle() {
+        // Array of factory instances
+        VehicleFactory[] factories = new VehicleFactory[] {
+                new Volvo240Factory(),
+                new Saab95Factory(),
+                new ScaniaFactory()
+        };
+
+        Random random = new Random();
+
+        // Select a random factory
+        int randomIndex = random.nextInt(factories.length);
+        VehicleFactory selectedFactory = factories[randomIndex];
+
+        // Create a vehicle using the selected factory
+        return selectedFactory.createVehicle();
+    }
+
+    public Vehicle createSpecifiedVehicle(String name) {
+        String lowerCaseModelName = name.toLowerCase();
+        switch(lowerCaseModelName) {
+            case "volvo240":
+                Volvo240Factory volvoFactory = new Volvo240Factory();
+                return volvoFactory.createVehicle();
+
+            case "saab95":
+                Saab95Factory saabFactory = new Saab95Factory();
+                return saabFactory.createVehicle();
+
+            case "scania":
+                ScaniaFactory scaniaFactory = new ScaniaFactory();
+                return scaniaFactory.createVehicle();
+
+            default:
+                // Handle the case where the model name does not match
+                return null;
+        }
+    }
+
+
 
     // Calls the gas method for each car once
     public void onGasButtonPressed(int amount) {
@@ -117,6 +157,30 @@ public class CarController implements CarViewObserver {
         }
     }
 
+    public void onAddCarButtonPressed(String name){
+        Vehicle newVehicle;
+        if(vehicles.size() < 10) {
+            if (name.isEmpty()) {
+                newVehicle = createRandomVehicle();
+            } else {
+                newVehicle = createSpecifiedVehicle(name);
+            }
+
+            if (newVehicle != null) {
+                vehicles.add(newVehicle);
+                frame.drawPanel.moveit(0, 0, newVehicle); // Assuming new vehicles start at (0,0)
+                frame.drawPanel.repaint(); // Refresh the view
+            }
+        }
+    }
+
+    public void onRemoveButtonPressed() {
+        if (!vehicles.isEmpty()) {
+            Vehicle vehicleToRemove = vehicles.remove(vehicles.size() - 1); // Remove last vehicle
+            frame.drawPanel.vehiclePoints.remove(vehicleToRemove); // Remove from view
+            frame.drawPanel.repaint(); // Refresh the view
+        }
+    }
 
     public void carOutOfBounds() {
         for (Vehicle vehicle : vehicles) {

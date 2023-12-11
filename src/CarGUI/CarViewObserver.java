@@ -11,4 +11,6 @@ public interface CarViewObserver {
     void onSetTurboOffButtonPressed();
     void onPlatformUpButtonPressed(double amount);
     void onPlatformDownButtonPressed(double amount);
+    void onAddCarButtonPressed(String name);
+    void onRemoveButtonPressed();
 }

@@ -6,7 +6,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import Car.*;
-
+import java.util.HashMap;
+import java.util.Map;
 // This panel represent the animated part of the view with the car images.
 
 public class DrawPanel extends JPanel{
@@ -16,22 +17,10 @@ public class DrawPanel extends JPanel{
     BufferedImage scaniaImage;
 
     // To keep track of a single cars position
-    Point volvoPoint = new Point();
-    Point saabPoint = new Point();
-    Point scaniaPoint = new Point();
+    Map<Vehicle, Point> vehiclePoints = new HashMap<>();
 
-
-    void moveit(int x, int y, Vehicle vehicle){
-        if(vehicle instanceof Volvo240){
-            volvoPoint.x = x;
-            volvoPoint.y = y;
-        } else if(vehicle instanceof Saab95){
-            saabPoint.x = x;
-            saabPoint.y = y;
-        } else if(vehicle instanceof Scania){
-            scaniaPoint.x = x;
-            scaniaPoint.y = y;
-        }
+    void moveit(int x, int y, Vehicle vehicle) {
+        vehiclePoints.put(vehicle, new Point(x, y));
     }
 
 
@@ -63,8 +52,17 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
-        g.drawImage(saabImage, saabPoint.x, saabPoint.y, null);
-        g.drawImage(scaniaImage, scaniaPoint.x, scaniaPoint.y, null);
+        for (Map.Entry<Vehicle, Point> entry : vehiclePoints.entrySet()) {
+            Vehicle v = entry.getKey();
+            Point p = entry.getValue();
+            if (v instanceof Volvo240) {
+                g.drawImage(volvoImage, p.x, p.y, null);
+            } else if (v instanceof Saab95) {
+                g.drawImage(saabImage, p.x, p.y, null);
+            } else if (v instanceof Scania) {
+                g.drawImage(scaniaImage, p.x, p.y, null);
+            }
+            // Add more else if blocks for other vehicle types
+        }
     }
 }
